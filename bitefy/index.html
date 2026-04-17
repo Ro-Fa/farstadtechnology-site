@@ -1,0 +1,252 @@
+export default function BiteFyWebsite() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <div className="min-h-screen bg-white text-slate-900">
+      <header className="border-b border-slate-200 bg-white/95 backdrop-blur sticky top-0 z-40">
+        <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+          <a href="#home" className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-2xl bg-slate-900 text-white flex items-center justify-center font-semibold text-sm shadow-sm">
+              BF
+            </div>
+            <div>
+              <p className="text-lg font-semibold tracking-tight">BiteFy</p>
+              <p className="text-xs text-slate-500 -mt-0.5">Food allergy barcode scanner</p>
+            </div>
+          </a>
+
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
+            <a href="#about" className="hover:text-slate-900 transition-colors">About</a>
+            <a href="#privacy" className="hover:text-slate-900 transition-colors">Privacy</a>
+            <a href="#support" className="hover:text-slate-900 transition-colors">Support</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section id="home" className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50 via-white to-white" />
+          <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+              <div>
+                <div className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm text-emerald-700">
+                  Simple, fast, allergy-aware shopping
+                </div>
+                <h1 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight text-slate-900 leading-tight">
+                  Scan food products with more confidence.
+                </h1>
+                <p className="mt-6 text-lg md:text-xl text-slate-600 max-w-xl leading-relaxed">
+                  BiteFy helps people with food allergies and intolerances check products more quickly.
+                  Scan a barcode, review ingredients and product information, and get a clearer overview while shopping.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="#support"
+                    className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-sm hover:opacity-90 transition-opacity"
+                  >
+                    Contact support
+                  </a>
+                  <a
+                    href="#privacy"
+                    className="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+                  >
+                    Read privacy policy
+                  </a>
+                </div>
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <p className="text-sm font-semibold">Barcode scanning</p>
+                    <p className="mt-1 text-sm text-slate-600">Quick product lookup using your phone camera.</p>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <p className="text-sm font-semibold">Ingredient overview</p>
+                    <p className="mt-1 text-sm text-slate-600">See ingredients and product details in a clearer format.</p>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <p className="text-sm font-semibold">Saved preferences</p>
+                    <p className="mt-1 text-sm text-slate-600">Store allergy and diet preferences locally on your device.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center lg:justify-end">
+                <div className="w-full max-w-sm rounded-[2rem] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-200">
+                  <div className="rounded-[1.6rem] bg-slate-950 p-4 text-white min-h-[560px] flex flex-col">
+                    <div className="flex items-center justify-between text-xs text-slate-300">
+                      <span>BiteFy</span>
+                      <span>Preview</span>
+                    </div>
+                    <div className="mt-6 rounded-3xl bg-white/10 p-4">
+                      <p className="text-sm text-slate-300">Scanned product</p>
+                      <h2 className="mt-2 text-2xl font-semibold">Oat Bar</h2>
+                      <p className="mt-2 text-sm text-slate-300">Ingredients, product details and allergy-relevant information at a glance.</p>
+                    </div>
+                    <div className="mt-4 rounded-3xl bg-emerald-500/15 border border-emerald-400/20 p-4">
+                      <p className="text-sm font-medium text-emerald-300">Status</p>
+                      <p className="mt-2 text-lg font-semibold">Needs review</p>
+                      <p className="mt-2 text-sm text-slate-300">Always verify the packaging label, especially if you have a severe allergy.</p>
+                    </div>
+                    <div className="mt-4 grid gap-3">
+                      <div className="rounded-2xl bg-white/5 p-4">
+                        <p className="text-sm font-medium">Milk</p>
+                        <p className="text-sm text-slate-300">No clear match found</p>
+                      </div>
+                      <div className="rounded-2xl bg-white/5 p-4">
+                        <p className="text-sm font-medium">Gluten</p>
+                        <p className="text-sm text-slate-300">Contains oats — check label</p>
+                      </div>
+                      <div className="rounded-2xl bg-white/5 p-4">
+                        <p className="text-sm font-medium">Ingredients</p>
+                        <p className="text-sm text-slate-300">Oats, cocoa butter, sugar, salt...</p>
+                      </div>
+                    </div>
+                    <div className="mt-auto pt-6 text-xs text-slate-400">
+                      Demo preview for BiteFy.no
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="mx-auto max-w-6xl px-6 py-20">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">About BiteFy</p>
+            <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight">A simpler product check for allergy-aware shopping</h2>
+            <p className="mt-6 text-base md:text-lg text-slate-600 leading-relaxed">
+              BiteFy is designed to make it easier to check food products while shopping. The app helps users scan barcodes,
+              review product information, and keep track of dietary preferences directly on their device.
+            </p>
+            <p className="mt-4 text-base md:text-lg text-slate-600 leading-relaxed">
+              BiteFy is intended as an informational support tool. Product information may come from third-party databases and may
+              be incomplete or outdated. Users should always verify the packaging label before consuming a product.
+            </p>
+          </div>
+        </section>
+
+        <section id="privacy" className="bg-slate-50 border-y border-slate-200">
+          <div className="mx-auto max-w-4xl px-6 py-20">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Privacy Policy</p>
+            <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight">Privacy Policy for BiteFy</h2>
+            <p className="mt-4 text-sm text-slate-500">Last updated: April 16, 2026</p>
+
+            <div className="mt-10 space-y-8 text-slate-700 leading-relaxed">
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">1. Overview</h3>
+                <p className="mt-3">
+                  BiteFy is a mobile application that helps users scan food products, review ingredients, and check whether a
+                  product may fit their dietary preferences or allergy-related needs.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">2. Information the app may use</h3>
+                <p className="mt-3">BiteFy may use the following information and device features:</p>
+                <ul className="mt-3 list-disc pl-6 space-y-2">
+                  <li>Camera access for scanning product barcodes.</li>
+                  <li>Barcode numbers entered manually by the user.</li>
+                  <li>Locally stored allergy, intolerance, or dietary preference settings.</li>
+                  <li>Locally stored history and favorites created by the user.</li>
+                  <li>Product information retrieved from third-party product databases or APIs.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">3. Local storage</h3>
+                <p className="mt-3">
+                  BiteFy may store certain user selections locally on the device, such as allergy settings, favorites, and scan
+                  history, in order to improve the user experience. This information is not intended to identify the user personally.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">4. Third-party product data</h3>
+                <p className="mt-3">
+                  BiteFy may retrieve product information from external sources. While we aim to present useful information,
+                  we do not guarantee that all product data is complete, accurate, or up to date.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">5. Health and allergy disclaimer</h3>
+                <p className="mt-3">
+                  BiteFy is not a medical device and does not provide medical advice. Users with allergies or severe intolerances
+                  should always verify the product packaging and ingredient label before use or consumption.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">6. Data sharing</h3>
+                <p className="mt-3">
+                  BiteFy is not designed to sell personal data. If product lookups are performed through third-party services,
+                  limited technical request data may be transmitted as part of normal app functionality.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">7. Data retention</h3>
+                <p className="mt-3">
+                  Locally stored information remains on the user’s device until it is removed by the user, deleted through app
+                  functionality, or removed when the app is uninstalled.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">8. Contact</h3>
+                <p className="mt-3">
+                  For support or privacy-related questions, contact us at{' '}
+                  <a href="mailto:support@bitefy.no" className="font-medium text-emerald-700 hover:text-emerald-800">
+                    support@bitefy.no
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="support" className="mx-auto max-w-4xl px-6 py-20">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Support</p>
+          <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight">Need help?</h2>
+          <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-2xl">
+            If you have questions, feedback, or want to report an issue related to BiteFy, please contact us by email.
+          </p>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <p className="text-sm text-slate-500">Support email</p>
+              <a href="mailto:support@bitefy.no" className="mt-2 block text-xl font-semibold text-slate-900 hover:text-emerald-700 transition-colors">
+                support@bitefy.no
+              </a>
+              <p className="mt-3 text-sm text-slate-600">
+                For bug reports, app issues, questions about features, or general support.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <p className="text-sm text-slate-500">Response</p>
+              <p className="mt-2 text-xl font-semibold text-slate-900">We aim to reply as soon as possible</p>
+              <p className="mt-3 text-sm text-slate-600">
+                Please include your device type, operating system, and a short description of the issue when relevant.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-slate-500">
+          <div>
+            <p className="font-medium text-slate-700">BiteFy</p>
+            <p>© {currentYear} BiteFy. All rights reserved.</p>
+          </div>
+          <div className="flex gap-5">
+            <a href="#privacy" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
+            <a href="#support" className="hover:text-slate-900 transition-colors">Support</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
