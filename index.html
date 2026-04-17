@@ -3,520 +3,1314 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Farstad Technology</title>
-  <meta name="description" content="Farstad Technology bygger digitale produkter, AI-løsninger og automatisering." />
-  <meta name="theme-color" content="#0b1020" />
+  <title>Farstad Technology | AI, automasjon og digitale produkter</title>
+  <meta
+    name="description"
+    content="Farstad Technology bygger moderne AI-løsninger, automasjon og digitale produkter for bedrifter og nye teknologiselskaper."
+  />
+  <meta name="theme-color" content="#060816" />
+  <meta property="og:title" content="Farstad Technology" />
+  <meta
+    property="og:description"
+    content="AI, automasjon og digitale produkter bygget for fremtidens bedrifter."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="nb_NO" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    :root{
-      --bg:#0b1020;
-      --panel:#121a2f;
-      --panel-2:#17213b;
-      --text:#f3f6fb;
-      --muted:#b8c2d9;
-      --line:rgba(255,255,255,0.10);
-      --accent:#ffffff;
-      --shadow:0 20px 60px rgba(0,0,0,0.28);
-      --radius:22px;
-      --max:1180px;
+    :root {
+      --bg: #060816;
+      --bg-soft: #0b1021;
+      --surface: rgba(255,255,255,0.05);
+      --surface-2: rgba(255,255,255,0.03);
+      --surface-3: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.10);
+      --border-strong: rgba(255,255,255,0.16);
+      --text: #f5f7ff;
+      --muted: #aab3ca;
+      --muted-2: #7f8aa6;
+      --primary: #7c8cff;
+      --primary-2: #4fd1c5;
+      --primary-3: #96a3ff;
+      --success: #5ce2c7;
+      --danger: #ff7a93;
+      --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.32);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --max-width: 1220px;
+      --nav-height: 82px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 24%),
-        radial-gradient(circle at left center, rgba(255,255,255,0.05), transparent 22%),
-        linear-gradient(180deg, #0b1020 0%, #0c1224 100%);
-      color:var(--text);
-      line-height:1.55;
+        radial-gradient(circle at 12% 18%, rgba(79, 209, 197, 0.12), transparent 18%),
+        radial-gradient(circle at 84% 12%, rgba(124, 140, 255, 0.20), transparent 22%),
+        radial-gradient(circle at 50% 82%, rgba(124, 140, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #050713 0%, #060816 100%);
+      overflow-x: hidden;
     }
 
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max);margin:0 auto;padding:0 24px}
-    .section{padding:88px 0}
-    .eyebrow{
-      display:inline-block;
-      padding:8px 12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,0.04);
-      color:var(--muted);
-      border-radius:999px;
-      font-size:13px;
-      letter-spacing:0.3px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 42%, transparent 82%);
+      z-index: 0;
+      opacity: 0.5;
     }
 
-    .nav{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(14px);
-      background:rgba(11,16,32,0.72);
-      border-bottom:1px solid rgba(255,255,255,0.06);
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .nav-inner{
-      min-height:74px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      letter-spacing:0.2px;
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .brand-mark{
-      width:36px;
-      height:36px;
-      border-radius:12px;
-      background:linear-gradient(135deg, #ffffff 0%, #9fb1d9 100%);
-      color:#0b1020;
-      display:grid;
-      place-items:center;
-      font-weight:800;
-      box-shadow:var(--shadow);
+    .section {
+      padding: 110px 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .nav-links{
-      display:flex;
-      gap:22px;
-      color:var(--muted);
-      font-size:15px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #d9def0;
+      letter-spacing: 0.01em;
+      margin-bottom: 18px;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
     }
 
-    .nav-links a:hover{color:var(--text)}
-
-    .hero{
-      padding:96px 0 56px;
-      display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap:34px;
-      align-items:center;
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 18px rgba(124, 140, 255, 0.9);
     }
 
-    .hero h1{
-      margin:18px 0 18px;
-      font-size:clamp(42px, 7vw, 76px);
-      line-height:0.98;
-      letter-spacing:-1.8px;
-      max-width:800px;
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      margin: 0 0 16px;
+      max-width: 820px;
     }
 
-    .hero p{
-      margin:0;
-      max-width:720px;
-      font-size:19px;
-      color:var(--muted);
+    .section-subtitle {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0;
+      max-width: 760px;
     }
 
-    .hero-actions{
-      margin-top:28px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 8, 22, 0.62);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:52px;
-      padding:0 20px;
-      border-radius:14px;
-      border:1px solid transparent;
-      font-weight:700;
-      transition:0.18s ease;
+    .nav {
+      min-height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
     }
 
-    .btn-primary{
-      background:var(--accent);
-      color:#0b1020;
-      box-shadow:var(--shadow);
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
 
-    .btn-primary:hover{transform:translateY(-1px)}
-    .btn-secondary{
-      border-color:var(--line);
-      background:rgba(255,255,255,0.04);
-      color:var(--text);
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(124,140,255,0.18), rgba(79,209,197,0.14)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow:
+        0 10px 30px rgba(124,140,255,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
-    .hero-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:28px;
-      box-shadow:var(--shadow);
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      inset: -35%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 58%);
     }
 
-    .hero-grid{
-      display:grid;
-      gap:14px;
-      margin-top:12px;
+    .brand-mark span {
+      position: relative;
+      z-index: 1;
+      font-size: 0.92rem;
+      font-weight: 900;
     }
 
-    .mini-stat, .mini-item{
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.07);
-      border-radius:18px;
-      padding:18px;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
     }
 
-    .mini-stat .label,
-    .mini-item .label{
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:6px;
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.25s ease, transform 0.25s ease;
     }
 
-    .mini-stat .value{
-      font-size:28px;
-      font-weight:800;
-      letter-spacing:-0.7px;
+    .nav-links a:hover {
+      color: var(--text);
+      transform: translateY(-1px);
     }
 
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:18px;
-      margin-top:30px;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
     }
 
-    .card{
-      background:linear-gradient(180deg, var(--panel), var(--panel-2));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow:var(--shadow);
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      white-space: nowrap;
     }
 
-    .card h3{
-      margin:0 0 10px;
-      font-size:22px;
-      letter-spacing:-0.4px;
+    .button {
+      padding: 13px 18px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-3));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow:
+        0 16px 32px rgba(124, 140, 255, 0.28),
+        inset 0 1px 0 rgba(255,255,255,0.16);
     }
 
-    .card p{
-      margin:0;
-      color:var(--muted);
-      font-size:15.5px;
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 22px 42px rgba(124, 140, 255, 0.35),
+        inset 0 1px 0 rgba(255,255,255,0.16);
     }
 
-    .split{
-      display:grid;
-      grid-template-columns:0.95fr 1.05fr;
-      gap:24px;
-      align-items:stretch;
+    .button-secondary {
+      padding: 13px 18px;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(10px);
     }
 
-    .list{
-      display:grid;
-      gap:14px;
+    .button-secondary:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
     }
 
-    .list-item{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:18px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid var(--line);
-      border-radius:18px;
+    .hero {
+      padding: 76px 0 54px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .list-item .dot{
-      width:10px;height:10px;border-radius:999px;background:#fff;margin-top:8px;flex:0 0 auto;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 30px;
+      align-items: center;
     }
 
-    .list-item strong{
-      display:block;
-      margin-bottom:5px;
-      font-size:16px;
+    .hero-copy {
+      max-width: 740px;
     }
 
-    .list-item span{
-      color:var(--muted);
-      font-size:14.5px;
+    .hero-title {
+      font-size: clamp(3.3rem, 8vw, 6.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      margin: 0 0 22px;
     }
 
-    .projects{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:18px;
-      margin-top:24px;
+    .hero-title .gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #d8ddff 38%, #94a0ff 70%, #4fd1c5 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .project{
-      padding:24px;
-      border-radius:22px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid var(--line);
+    .hero-text {
+      margin: 0 0 28px;
+      font-size: 1.14rem;
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.75;
     }
 
-    .project .tag{
-      display:inline-block;
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.06);
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-size:12px;
-      margin-bottom:14px;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
     }
 
-    .project h4{
-      margin:0 0 8px;
-      font-size:20px;
-      letter-spacing:-0.3px;
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .project p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
+    .proof-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d8def2;
+      font-size: 0.88rem;
+      font-weight: 600;
     }
 
-    .contact{
-      text-align:center;
-      padding:40px 0 10px;
+    .proof-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 14px rgba(92, 226, 199, 0.9);
     }
 
-    .contact-box{
-      padding:34px;
-      border-radius:28px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
+    .hero-visual {
+      position: relative;
+      min-height: 620px;
+      border-radius: 38px;
+      padding: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow:
+        var(--shadow-xl),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
     }
 
-    .contact h2,
-    .section h2{
-      margin:14px 0 12px;
-      font-size:clamp(30px, 4vw, 48px);
-      letter-spacing:-1.2px;
-      line-height:1.03;
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(124,140,255,0.28), transparent 25%),
+        radial-gradient(circle at 72% 32%, rgba(79,209,197,0.24), transparent 22%),
+        radial-gradient(circle at 50% 80%, rgba(124,140,255,0.14), transparent 30%);
+      filter: blur(22px);
+      opacity: 1;
     }
 
-    .section-intro{
-      max-width:760px;
-      color:var(--muted);
-      font-size:18px;
+    .dashboard {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+      height: 100%;
     }
 
-    footer{
-      padding:38px 0 56px;
-      color:#94a0bb;
-      font-size:14px;
+    .dashboard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(8, 11, 25, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .footer-inner{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      border-top:1px solid rgba(255,255,255,0.08);
-      padding-top:20px;
+    .dashboard-top-left small,
+    .tiny-label {
+      display: block;
+      color: var(--muted-2);
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    @media (max-width: 980px){
-      .hero,
-      .split,
-      .cards,
-      .projects{
-        grid-template-columns:1fr;
+    .dashboard-top-left strong {
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .status-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: #dbe0f4;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status-live::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 16px rgba(92, 226, 199, 0.9);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(8, 11, 25, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+      min-width: 0;
+    }
+
+    .chart-value {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      margin: 0 0 8px;
+    }
+
+    .chart-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .chart-bars {
+      margin-top: 18px;
+      height: 195px;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      align-items: end;
+      gap: 10px;
+    }
+
+    .bar {
+      min-height: 28px;
+      border-radius: 16px 16px 8px 8px;
+      background: linear-gradient(180deg, rgba(79,209,197,0.96), rgba(124,140,255,0.56));
+      position: relative;
+      box-shadow: 0 12px 24px rgba(79,209,197,0.10);
+    }
+
+    .bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent 48%);
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .task-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .task-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.96rem;
+      letter-spacing: -0.02em;
+    }
+
+    .task-item span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .tag {
+      align-self: center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(124,140,255,0.12);
+      border: 1px solid rgba(124,140,255,0.18);
+      color: #dfe4ff;
+      font-size: 0.74rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .wide-panel {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .about-card {
+      padding: 26px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .about-list-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .about-list-item::before {
+      content: "";
+      margin-top: 10px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 14px rgba(124, 140, 255, 0.85);
+      flex-shrink: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .service-card,
+    .project-card,
+    .future-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .service-card::before,
+    .project-card::before,
+    .future-card::before {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -60px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,140,255,0.14), transparent 60%);
+      pointer-events: none;
+    }
+
+    .service-card:hover,
+    .project-card:hover,
+    .future-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(124,140,255,0.22);
+      box-shadow:
+        0 30px 70px rgba(0,0,0,0.42),
+        0 0 0 1px rgba(124,140,255,0.06);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      font-size: 1.15rem;
+      background:
+        linear-gradient(135deg, rgba(124,140,255,0.20), rgba(79,209,197,0.15)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .service-card h3,
+    .project-card h3,
+    .future-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+      letter-spacing: -0.03em;
+    }
+
+    .service-card p,
+    .project-card p,
+    .future-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+
+    .projects-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.95fr 0.95fr;
+      gap: 18px;
+    }
+
+    .project-card.featured {
+      min-height: 100%;
+      padding: 30px;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .project-badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #dfe4ff;
+      letter-spacing: 0.02em;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      color: #dfe4ff;
+      font-size: 0.93rem;
+      font-weight: 700;
+    }
+
+    .project-link:hover {
+      color: white;
+    }
+
+    .project-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .metric {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .contact-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(124,140,255,0.12), rgba(79,209,197,0.10)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,140,255,0.22), transparent 65%);
+      filter: blur(18px);
+    }
+
+    .contact-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .contact-title {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      margin: 0 0 12px;
+      max-width: 700px;
+    }
+
+    .contact-text {
+      margin: 0;
+      max-width: 690px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.04rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .footer {
+      padding: 34px 0 50px;
+      color: var(--muted-2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .dashboard-grid {
+        grid-template-columns: 1fr;
       }
-      .hero{padding-top:72px}
-      .nav-links{display:none}
+
+      .services-grid,
+      .future-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wide-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .contact-actions {
+        justify-content: flex-start;
+      }
     }
 
-    @media (max-width: 640px){
-      .container{padding:0 18px}
-      .section{padding:72px 0}
-      .hero h1{letter-spacing:-1.2px}
-      .hero p,.section-intro{font-size:17px}
-      .card,.hero-card,.contact-box{padding:22px}
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .services-grid,
+      .future-grid,
+      .project-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 86px 0;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 22px, var(--max-width));
+      }
+
+      .hero-title {
+        font-size: 2.9rem;
+      }
+
+      .hero-text,
+      .section-subtitle,
+      .contact-text {
+        font-size: 1rem;
+      }
+
+      .service-card,
+      .project-card,
+      .future-card,
+      .about-card,
+      .contact-box,
+      .hero-visual {
+        padding: 20px;
+      }
+
+      .nav-actions .button-secondary {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a href="#" class="brand">
-        <div class="brand-mark">F</div>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Farstad Technology">
+        <div class="brand-mark"><span>FT</span></div>
         <span>Farstad Technology</span>
       </a>
-      <div class="nav-links">
+
+      <nav class="nav-links" aria-label="Hovedmeny">
+        <a href="#about">Om oss</a>
         <a href="#services">Tjenester</a>
         <a href="#projects">Prosjekter</a>
-        <a href="#about">Om</a>
+        <a href="#future">Struktur</a>
         <a href="#contact">Kontakt</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="button-secondary" href="/bitefy">BiteFy</a>
+        <a class="button" href="mailto:kontakt@farstadtechnology.no">Kontakt</a>
       </div>
     </div>
-  </nav>
+  </header>
 
   <main>
-    <section class="container hero">
-      <div>
-        <span class="eyebrow">Digital produktutvikling • AI • Automatisering</span>
-        <h1>Bygger digitale produkter med fart, struktur og kvalitet.</h1>
-        <p>
-          Farstad Technology utvikler apper, nettsider og AI-drevne løsninger for moderne
-          bedrifter og nye konsepter. Målet er å gjøre idéer om til faktiske produkter som kan lanseres,
-          testes og skaleres.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Kom i kontakt</a>
-          <a class="btn btn-secondary" href="#projects">Se prosjekter</a>
-        </div>
-      </div>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal visible">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            AI · Automatisering · Digitale produkter
+          </div>
 
-      <div class="hero-card">
-        <span class="eyebrow">Fokus akkurat nå</span>
-        <div class="hero-grid">
-          <div class="mini-stat">
-            <div class="label">Retning</div>
-            <div class="value">Apps, AI og automasjon</div>
+          <h1 class="hero-title">
+            Bygger <span class="gradient">teknologi med kraft</span> for selskaper som vil ligge foran.
+          </h1>
+
+          <p class="hero-text">
+            Farstad Technology utvikler premium digitale løsninger innen AI, automatisering
+            og produktutvikling. Vi bygger selskapsprofiler, verktøy og produkter som føles
+            moderne, ser sterke ut og er rigget for videre vekst.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#projects">Se prosjekter</a>
+            <a class="button-secondary" href="#contact">Jobb med oss</a>
           </div>
-          <div class="mini-item">
-            <div class="label">Merkevare</div>
-            <strong>Farstad Technology</strong>
-            <div>Plattform for flere produkter og digitale satsinger.</div>
+
+          <div class="hero-proof">
+            <div class="proof-pill">Bygget for vekst</div>
+            <div class="proof-pill">Premium uttrykk</div>
+            <div class="proof-pill">Klar for undersider</div>
           </div>
-          <div class="mini-item">
-            <div class="label">Eksempler på prosjekter</div>
-            <strong>BiteFy • Bedriftsfeiring</strong>
-            <div>Produkter innen forbrukerapp, bedriftsløsninger og automatiserte workflows.</div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="dashboard">
+            <div class="dashboard-top">
+              <div class="dashboard-top-left">
+                <small>Farstad Technology</small>
+                <strong>Digital venture overview</strong>
+              </div>
+              <div class="status-live">Systemer online</div>
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="panel">
+                <div class="tiny-label">Momentum</div>
+                <div class="chart-value">+314%</div>
+                <p class="chart-text">
+                  Konsepter, automatisering og digitale produkter bygget med samme visjon:
+                  mindre friksjon, mer verdi og tydeligere skalering.
+                </p>
+
+                <div class="chart-bars" aria-hidden="true">
+                  <div class="bar" style="height: 26%;"></div>
+                  <div class="bar" style="height: 34%;"></div>
+                  <div class="bar" style="height: 42%;"></div>
+                  <div class="bar" style="height: 49%;"></div>
+                  <div class="bar" style="height: 62%;"></div>
+                  <div class="bar" style="height: 74%;"></div>
+                  <div class="bar" style="height: 88%;"></div>
+                  <div class="bar" style="height: 100%;"></div>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="tiny-label">Aktive satsninger</div>
+                <div class="stack">
+                  <div class="task-item">
+                    <div>
+                      <strong>BiteFy</strong>
+                      <span>Mobilapp for smartere matvalg ved allergier og intoleranser.</span>
+                    </div>
+                    <div class="tag">APP</div>
+                  </div>
+
+                  <div class="task-item">
+                    <div>
+                      <strong>AI Service Coordinator</strong>
+                      <span>Automatisert koordinering av serviceoppdrag og drift.</span>
+                    </div>
+                    <div class="tag">AI OPS</div>
+                  </div>
+
+                  <div class="task-item">
+                    <div>
+                      <strong>Bedriftsfeiring.no</strong>
+                      <span>Automatisert feiringstjeneste for moderne arbeidsplasser.</span>
+                    </div>
+                    <div class="tag">SAAS</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel wide-panel">
+                <div class="mini-card">
+                  <strong>AI-løsninger</strong>
+                  <p>Systemer som automatiserer vurderinger, flyt og oppfølging.</p>
+                </div>
+                <div class="mini-card">
+                  <strong>Automatisering</strong>
+                  <p>Digitale arbeidsprosesser som reduserer manuelt arbeid og tidstap.</p>
+                </div>
+                <div class="mini-card">
+                  <strong>Produkter</strong>
+                  <p>Nettsider, apper og systemer med struktur for videre skalering.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="section">
-      <div class="container">
-        <span class="eyebrow">Tjenester</span>
-        <h2>Hva Farstad Technology bygger</h2>
-        <p class="section-intro">
-          Fokus ligger på løsninger som faktisk kan brukes i praksis: enkle å forstå, raske å teste og klare for videre vekst.
-        </p>
-
-        <div class="cards">
-          <div class="card">
-            <h3>Apputvikling</h3>
-            <p>
-              Utvikling av mobilapper og digitale produkter fra idé til første versjon,
-              med fokus på struktur, brukeropplevelse og lanseringsklar kvalitet.
-            </p>
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Om Farstad Technology
           </div>
-          <div class="card">
+          <h2 class="section-title">Et moderne teknologiselskap med flere produkter under samme tak.</h2>
+        </div>
+
+        <div class="about-card reveal">
+          <p class="section-subtitle">
+            Farstad Technology er bygget som en plattform for flere digitale satsninger.
+            Målet er ikke bare å ha en pen nettside, men å etablere en tydelig struktur der
+            hvert produkt kan vokse videre som sin egen merkevare under samme selskap.
+          </p>
+
+          <div class="about-list">
+            <div class="about-list-item">
+              Sterk hovedside for selskapet og tydelig posisjonering utad.
+            </div>
+            <div class="about-list-item">
+              Egen struktur for undersider som <strong>/bitefy</strong> uten at resten må bygges om.
+            </div>
+            <div class="about-list-item">
+              Visuelt premium uttrykk som gir et seriøst førsteinntrykk ved åpning.
+            </div>
+            <div class="about-list-item">
+              Klargjort for senere utvidelser som logo, egne prosjektlandingssider, kontaktskjema og CMS.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Tjenester
+          </div>
+          <h2 class="section-title">Bygger produkter, systemer og opplevelser som føles fremme i tid.</h2>
+          <p class="section-subtitle">
+            Farstad Technology kombinerer teknisk presisjon med et premium visuelt uttrykk.
+            Resultatet er løsninger som både ser sterke ut og fungerer i praksis.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon">✦</div>
             <h3>AI-løsninger</h3>
             <p>
-              Praktiske AI-funksjoner som gjør arbeidsflyter smartere, reduserer manuelt arbeid
-              og gir raskere beslutningsstøtte.
+              Smarte systemer for analyse, anbefalinger, automatiske handlinger og bedre beslutningsstøtte.
             </p>
-          </div>
-          <div class="card">
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">⚙</div>
             <h3>Automatisering</h3>
             <p>
-              Integrasjoner, workflows og systemoppsett som kobler sammen data, prosesser og kommunikasjon
-              på en effektiv måte.
+              Effektive arbeidsflyter som reduserer manuelt arbeid og gjør drift mer strukturert og skalerbar.
+            </p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">⌘</div>
+            <h3>App- og systemutvikling</h3>
+            <p>
+              Utvikling av apper, interne verktøy og plattformer med fokus på brukervennlighet og ytelse.
+            </p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">◉</div>
+            <h3>Digitale merkevarer</h3>
+            <p>
+              Oppsett av selskapssider, produktlandingssider og digitale identiteter som tåler videre vekst.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="projects-head reveal">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Prosjekter
+            </div>
+            <h2 class="section-title">Flere satsninger. Én tydelig plattform.</h2>
+            <p class="section-subtitle">
+              Selskapet er strukturert for å samle flere produkter under Farstad Technology,
+              med rom for egne landingssider og undersider senere.
             </p>
           </div>
         </div>
+
+        <div class="projects-grid">
+          <article class="project-card featured reveal">
+            <div class="project-top">
+              <div class="project-badge">Fremhevet produkt</div>
+              <div class="project-badge">/bitefy</div>
+            </div>
+
+            <h3>BiteFy</h3>
+            <p>
+              BiteFy er en mobilapp utviklet for brukere med allergier og intoleranser.
+              Målet er å gjøre det raskere og tryggere å skanne produkter, lese ingredienser
+              og ta bedre valg i butikk og hverdagsliv.
+            </p>
+
+            <div class="project-metrics">
+              <div class="metric">
+                <strong>Mobilfokus</strong>
+                <span>Bygget som app-first produkt</span>
+              </div>
+              <div class="metric">
+                <strong>Skalerbar</strong>
+                <span>Klar for egen produktside</span>
+              </div>
+              <div class="metric">
+                <strong>Rute klar</strong>
+                <span>Planlagt på /bitefy</span>
+              </div>
+            </div>
+
+            <a class="project-link" href="/bitefy">Åpne BiteFy-siden →</a>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-top">
+              <div class="project-badge">AI OPS</div>
+            </div>
+            <h3>AI Service Coordinator</h3>
+            <p>
+              En løsning som automatiserer opprettelse, prioritering og oppfølging av serviceoppdrag,
+              med mål om å redusere behovet for manuell koordinering.
+            </p>
+            <a class="project-link" href="#contact">Les mer senere →</a>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-top">
+              <div class="project-badge">SAAS</div>
+            </div>
+            <h3>Bedriftsfeiring.no</h3>
+            <p>
+              En AI-drevet tjeneste for bedrifter som vil automatisere markeringer som bursdager,
+              gaver, blomster og andre feiringer på arbeidsplassen.
+            </p>
+            <a class="project-link" href="#contact">Les mer senere →</a>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <div class="container split">
-        <div class="card">
-          <span class="eyebrow">Om selskapet</span>
-          <h2>En teknologiplattform for flere satsinger.</h2>
-          <p class="section-intro" style="margin-top:0">
-            Farstad Technology er satt opp for å være paraplyen over flere produkter, domener og digitale initiativ.
-            Tanken er å bygge én tydelig struktur som gjør det enklere å lansere nye apper og løsninger under samme merkevare.
+    <section class="section" id="future">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Struktur for videre oppgradering
+          </div>
+          <h2 class="section-title">Bygget for neste steg, ikke bare for i dag.</h2>
+          <p class="section-subtitle">
+            Denne siden er lagt opp slik at du enkelt kan bygge videre uten å starte på nytt.
           </p>
         </div>
 
-        <div class="list">
-          <div class="list-item">
-            <div class="dot"></div>
-            <div>
-              <strong>Skalerbar struktur</strong>
-              <span>Én teknologisk base for flere produkter, nettsider og forretningsområder.</span>
-            </div>
-          </div>
-          <div class="list-item">
-            <div class="dot"></div>
-            <div>
-              <strong>Rask vei fra idé til MVP</strong>
-              <span>Bygge første versjon raskt, teste markedet og forbedre basert på faktiske behov.</span>
-            </div>
-          </div>
-          <div class="list-item">
-            <div class="dot"></div>
-            <div>
-              <strong>Profesjonell digital grunnmur</strong>
-              <span>Domene, nettside, e-post, appstruktur og merkevare som tåler videre vekst.</span>
-            </div>
-          </div>
+        <div class="future-grid">
+          <article class="future-card reveal">
+            <h3>Egne produktsider</h3>
+            <p>
+              Du kan opprette mapper som <strong>/bitefy</strong>, <strong>/bedriftsfeiring</strong>
+              og senere egne sider for hvert produkt eller hver tjeneste.
+            </p>
+          </article>
+
+          <article class="future-card reveal">
+            <h3>Mer premium innhold</h3>
+            <p>
+              Senere kan du legge inn ekte logo, animert bakgrunn, produktbilder, mockups,
+              testimonials og mer avanserte CTA-seksjoner.
+            </p>
+          </article>
+
+          <article class="future-card reveal">
+            <h3>Bedre konvertering</h3>
+            <p>
+              Neste versjon kan få kontaktskjema, integrasjon mot e-post, flere undersider,
+              SEO-sider og egne presentasjonssider per produkt.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
+    <section class="section" id="contact">
       <div class="container">
-        <span class="eyebrow">Prosjekter</span>
-        <h2>Eksempler på konsepter under utvikling</h2>
-        <p class="section-intro">
-          Disse seksjonene kan senere utvides med egne undersider, logoer, skjermbilder og lenker når prosjektene er klare.
-        </p>
+        <div class="contact-box reveal">
+          <div class="contact-grid">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Kontakt
+              </div>
+              <h2 class="contact-title">Klar for å bygge noe folk husker?</h2>
+              <p class="contact-text">
+                Farstad Technology bygger løsninger som skal føles moderne, gjennomtenkte og sterke fra første inntrykk.
+                Ta kontakt for samarbeid, produktutvikling eller nye konsepter.
+              </p>
+            </div>
 
-        <div class="projects">
-          <div class="project">
-            <div class="tag">Forbrukerapp</div>
-            <h4>BiteFy</h4>
-            <p>Mobilapp som gjør det enklere å vurdere matvarer for personer med allergier og intoleranser.</p>
+            <div class="contact-actions">
+              <a class="button" href="mailto:kontakt@farstadtechnology.no">kontakt@farstadtechnology.no</a>
+              <a class="button-secondary" href="/bitefy">Se BiteFy</a>
+            </div>
           </div>
-          <div class="project">
-            <div class="tag">B2B / Automatisering</div>
-            <h4>Bedriftsfeiring</h4>
-            <p>Løsning for automatisert bestilling av blomster, kake eller gaver til ansatte på viktige dager.</p>
-          </div>
-          <div class="project">
-            <div class="tag">AI / Drift</div>
-            <h4>Flere apper kommer</h4>
-            <p>Farstad Technology er bygget for å kunne lansere flere digitale tjenester under samme struktur.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
-      <div class="container">
-        <div class="contact-box">
-          <span class="eyebrow">Kontakt</span>
-          <h2>Klar for å bygge noe?</h2>
-          <p class="section-intro" style="margin:0 auto 22px;">
-            Denne siden er satt opp som første versjon av Farstad Technology og kan bygges videre med flere seksjoner,
-            prosjektsider og kontaktløsninger.
-          </p>
-          <a class="btn btn-primary" href="mailto:kontakt@farstadtechnology.no">kontakt@farstadtechnology.no</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <div>© 2026 Farstad Technology. Alle rettigheter forbeholdt.</div>
-      <div>farstadtechnology.no</div>
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>Farstad Technology</div>
+      <div>© <span id="year"></span> Farstad Technology. Alle rettigheter forbeholdt.</div>
     </div>
   </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach((element, index) => {
+      if (!element.classList.contains("visible")) {
+        element.style.transitionDelay = `${Math.min(index * 60, 260)}ms`;
+      }
+      observer.observe(element);
+    });
+  </script>
 </body>
 </html>
