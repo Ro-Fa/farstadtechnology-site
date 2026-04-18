@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sentrum Barbershop</title>
-  <meta name="description" content="Sentrum Barbershop – klassisk herreklipp, skjeggtrim og barbering i en mørk og premium stil." />
+  <title>Sentrum Frisør / Barbershop | Molde</title>
+  <meta name="description" content="Sentrum Frisør / Barbershop i Molde. Herreklipp, skjeggtrim og klassisk barbershop-opplevelse. Ring 96 95 46 64 for booking." />
   <style>
     :root{
-      --bg:#1f1f1f;
-      --bg-soft:#2a2a2a;
-      --card:#2f2f2f;
-      --text:#f4efe8;
-      --muted:#d8cfc5;
+      --bg:#191919;
+      --bg-soft:#262626;
+      --bg-soft-2:#2d2d2d;
+      --card:#313131;
+      --text:#f5efe8;
+      --muted:#d8cfc4;
+      --muted-2:#bfae99;
       --line:rgba(255,255,255,.08);
-      --accent:#c88a45;
-      --accent-dark:#a56d33;
+      --accent:#c98b46;
+      --accent-2:#e3b071;
+      --dark:#111111;
       --shadow:0 18px 60px rgba(0,0,0,.35);
-      --radius:24px;
-      --radius-sm:18px;
+      --radius:28px;
+      --radius-sm:22px;
       --max:1180px;
     }
 
@@ -26,227 +29,319 @@
     body{
       margin:0;
       font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top left, rgba(200,138,69,.08), transparent 35%),
-        linear-gradient(180deg, #171717 0%, #1f1f1f 100%);
       color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(201,139,70,.08), transparent 35%),
+        linear-gradient(180deg, #141414 0%, #1b1b1b 100%);
     }
-
-    a{color:inherit;text-decoration:none}
+    a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
-    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+    .container{width:min(var(--max), calc(100% - 32px));margin:0 auto}
 
     .site-header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background:rgba(20,20,20,.88);
+      position:sticky; top:0; z-index:100;
+      background:rgba(16,16,16,.90);
+      backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       gap:20px; padding:14px 0;
     }
-    .brand{
-      display:flex; align-items:center; gap:14px;
-    }
+    .brand{display:flex; align-items:center; gap:14px}
     .brand-mark{
       width:58px; height:58px; border-radius:14px;
-      background:linear-gradient(180deg, #111, #242424);
-      border:1px solid rgba(255,255,255,.08);
       display:grid; place-items:center;
+      background:linear-gradient(180deg, #121212, #262626);
+      border:1px solid rgba(255,255,255,.08);
       box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
+      position:relative; overflow:hidden;
+      font-weight:700; letter-spacing:1px;
     }
     .brand-mark::before{
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(135deg, rgba(200,138,69,.22), transparent 55%);
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(201,139,70,.22), transparent 60%);
     }
-    .brand-mark span{
-      position:relative;
-      font-size:18px; letter-spacing:1px; font-weight:700;
-    }
+    .brand-mark span{position:relative; z-index:1}
     .brand-copy small{
-      display:block; color:#bcae9a; font-size:11px; letter-spacing:2px; text-transform:uppercase;
-      margin-bottom:3px;
-      font-family: Arial, Helvetica, sans-serif;
+      display:block; font-family:Arial, Helvetica, sans-serif;
+      color:var(--muted-2); text-transform:uppercase; letter-spacing:2px;
+      font-size:11px; margin-bottom:4px;
     }
-    .brand-copy strong{
-      display:block; font-size:22px; line-height:1;
-    }
-
+    .brand-copy strong{font-size:21px; line-height:1}
     .nav-links{
-      display:flex; align-items:center; gap:28px;
+      display:flex; align-items:center; gap:26px;
       font-size:15px;
+      font-family:Arial, Helvetica, sans-serif;
     }
-    .nav-links a{opacity:.92}
+    .nav-links a{opacity:.95}
     .nav-links a:hover{color:#fff}
     .book-btn{
       display:inline-flex; align-items:center; justify-content:center;
+      background:var(--accent);
+      color:#fff; font-weight:700;
       padding:12px 20px; border-radius:999px;
-      background:var(--accent); color:#fff; font-weight:700;
       border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 10px 30px rgba(200,138,69,.22);
-      font-family: Arial, Helvetica, sans-serif;
+      box-shadow:0 10px 30px rgba(201,139,70,.22);
       letter-spacing:.3px;
+      font-family:Arial, Helvetica, sans-serif;
     }
-    .book-btn:hover{background:var(--accent-dark)}
-
+    .book-btn:hover{filter:brightness(.97)}
     .mobile-book{display:none}
 
     .panel{
-      background:linear-gradient(180deg, rgba(45,45,45,.96), rgba(37,37,37,.96));
+      background:linear-gradient(180deg, rgba(43,43,43,.98), rgba(36,36,36,.98));
       border:1px solid var(--line);
-      border-radius:30px;
+      border-radius:32px;
+      overflow:hidden;
       box-shadow:var(--shadow);
-      overflow:hidden;
     }
 
-    .hero{
-      padding:26px 0 18px;
-    }
-    .hero-grid{
-      display:grid; grid-template-columns:1.15fr .85fr; gap:0;
-      min-height:620px;
-    }
-
-    .hero-media{
-      position:relative;
-      min-height:620px;
-      background:
-        linear-gradient(to right, rgba(0,0,0,.55), rgba(0,0,0,.20)),
-        url('https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-    }
-    .hero-media::after{
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.50));
-    }
-    .hero-content{
-      position:absolute; left:40px; bottom:42px; z-index:2; max-width:600px;
-    }
+    section{padding:18px 0}
+    h1,h2,h3{margin:0 0 12px 0; font-weight:400}
+    h1{font-size:clamp(42px, 7vw, 76px); line-height:.95}
+    h2{font-size:clamp(32px, 5vw, 54px); line-height:1}
+    h3{font-size:28px}
     .eyebrow{
-      color:#d6b289; letter-spacing:2px; text-transform:uppercase;
-      font-family: Arial, Helvetica, sans-serif; font-size:12px; margin-bottom:12px;
-    }
-    h1,h2,h3{margin:0 0 14px 0; font-weight:400}
-    h1{font-size:clamp(40px, 6vw, 76px); line-height:.96}
-    h2{font-size:clamp(34px, 5vw, 58px); line-height:1}
-    .lead{
-      font-size:17px; line-height:1.65; color:var(--muted); max-width:560px;
-    }
-
-    .hero-side{
-      display:grid;
-      grid-template-rows:1fr auto;
-      min-height:620px;
-      background:
-        linear-gradient(180deg, rgba(44,44,44,.97), rgba(37,37,37,.97));
-      position:relative;
-    }
-    .hero-side::before{
-      content:"";
-      position:absolute; inset:auto 0 180px auto;
-      width:260px; height:260px; border-radius:999px;
-      background:radial-gradient(circle, rgba(200,138,69,.18), transparent 65%);
-      filter:blur(10px);
-    }
-    .side-top{
-      padding:42px 34px 24px;
-      display:flex; flex-direction:column; justify-content:center;
-      border-bottom:1px solid var(--line);
-    }
-    .feature-list{
-      display:grid; gap:14px; margin-top:16px;
-      font-family: Arial, Helvetica, sans-serif;
-      color:#ece1d3;
-    }
-    .feature{
-      padding:14px 16px; border-radius:16px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.06);
-    }
-    .feature strong{display:block; margin-bottom:4px; font-size:15px}
-    .feature span{font-size:13px; color:#cdbfaa}
-    .side-bottom{
-      padding:28px 34px 34px;
-      display:grid; gap:14px;
-      align-content:start;
-    }
-    .mini-card{
-      padding:16px 18px; border-radius:18px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.06);
-    }
-    .mini-card strong{
-      display:block; font-family:Arial, Helvetica, sans-serif; font-size:14px; margin-bottom:6px;
-    }
-    .mini-card p{
-      margin:0; color:var(--muted); line-height:1.5; font-size:14px;
       font-family:Arial, Helvetica, sans-serif;
+      color:#ddb78b;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-size:12px;
+      margin-bottom:12px;
     }
-
-    section{
-      padding:18px 0;
+    .lead{
+      font-size:18px; line-height:1.7;
+      color:var(--muted);
+      max-width:650px;
     }
-
-    .section-card{
-      position:relative;
-      overflow:hidden;
+    .section-intro{
+      max-width:760px;
+      margin-bottom:24px;
     }
-    .section-card .section-top{
+    .section-top{
       min-height:240px;
       position:relative;
       display:flex; align-items:end;
       padding:34px;
       background:
-        linear-gradient(0deg, rgba(0,0,0,.30), rgba(0,0,0,.10)),
+        linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.12)),
         var(--bg-image) center/cover no-repeat;
     }
-    .section-card .section-top::after{
+    .section-top::after{
       content:"";
-      position:absolute; left:0; right:0; bottom:-1px; height:90px;
+      position:absolute; left:0; right:0; bottom:-1px; height:92px;
       background:var(--bg-soft);
-      clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+      clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 100%);
     }
-    .section-card .section-top h2{
-      position:relative; z-index:2;
-    }
+    .section-top > *{position:relative; z-index:2}
     .section-body{
       background:var(--bg-soft);
       padding:32px 34px 38px;
     }
 
-    .prices-grid{
-      display:grid; grid-template-columns:1fr 320px; gap:26px;
-      align-items:start;
+    .hero{padding-top:24px}
+    .hero-grid{
+      display:grid; grid-template-columns:1.15fr .85fr;
+      min-height:670px;
     }
-    .price-list{
-      display:grid; gap:18px;
+    .hero-media{
+      min-height:670px;
+      position:relative;
+      background:
+        linear-gradient(to right, rgba(0,0,0,.58), rgba(0,0,0,.20)),
+        url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
     }
-    .price-row{
-      display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      padding-bottom:10px;
+    .hero-media::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.5));
     }
-    .price-row .name{
-      font-size:18px;
+    .hero-content{
+      position:absolute; left:40px; right:30px; bottom:42px; z-index:2;
+      max-width:640px;
     }
-    .price-row .desc{
-      margin-top:5px; color:#bcae9a; font-size:13px; font-family:Arial, Helvetica, sans-serif;
-    }
-    .price-row .value{
-      white-space:nowrap; color:#ead1b2; font-size:18px;
-    }
-    .price-note{
-      padding:20px; border-radius:20px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.06);
+    .hero-points{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;
       font-family:Arial, Helvetica, sans-serif;
     }
-    .price-note h3{font-size:24px; margin-bottom:10px}
-    .price-note p{margin:0; line-height:1.6; color:var(--muted)}
+    .hero-pill{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:#f4eadf;
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:13px;
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-side{
+      background:linear-gradient(180deg, rgba(43,43,43,.98), rgba(35,35,35,.98));
+      display:grid; grid-template-rows:auto auto auto;
+    }
+    .hero-side-block{
+      padding:34px;
+      border-bottom:1px solid var(--line);
+    }
+    .hero-side-block:last-child{border-bottom:0}
+    .feature-list{
+      display:grid; gap:14px; margin-top:14px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .feature{
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .feature strong{display:block; margin-bottom:4px; font-size:15px}
+    .feature span{font-size:13px; line-height:1.5; color:#cab9a4}
+    .quick-stats{
+      display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .stat{
+      padding:18px; border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .stat strong{
+      display:block; color:#fff; font-size:24px; margin-bottom:6px;
+    }
+    .stat span{
+      color:var(--muted); font-size:13px; line-height:1.5;
+    }
+    .cta-stack{display:grid; gap:12px}
+    .cta-alt{
+      display:inline-flex; justify-content:center; align-items:center;
+      padding:13px 18px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      font-family:Arial, Helvetica, sans-serif;
+      background:rgba(255,255,255,.03);
+      color:#fff;
+    }
+
+    .info-grid{
+      display:grid; grid-template-columns:1.05fr .95fr; gap:26px;
+    }
+    .about-card, .highlight-card{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:24px;
+      padding:26px;
+    }
+    .about-card p, .highlight-card p{
+      margin:0; color:var(--muted); line-height:1.75;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:15px;
+    }
+    .check-list{
+      display:grid; gap:12px; margin-top:18px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .check{
+      display:flex; gap:12px; align-items:flex-start;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    .check b{
+      display:inline-grid; place-items:center;
+      width:26px; height:26px; min-width:26px;
+      border-radius:999px; background:rgba(201,139,70,.18); color:#f2d6b3;
+      font-size:14px;
+    }
+
+    .prices-grid{
+      display:grid; grid-template-columns:1fr 330px; gap:26px;
+      align-items:start;
+    }
+    .price-list{display:grid; gap:18px}
+    .price-row{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
+      padding-bottom:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .price-row .name{font-size:18px}
+    .price-row .desc{
+      margin-top:5px; color:var(--muted-2);
+      font-size:13px; font-family:Arial, Helvetica, sans-serif;
+    }
+    .price-row .value{
+      white-space:nowrap; color:#ead0b0; font-size:18px;
+    }
+    .side-note{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:22px;
+      padding:22px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .side-note h3{font-size:24px; margin-bottom:10px}
+    .side-note p{margin:0; color:var(--muted); line-height:1.65}
+    .side-note p + p{margin-top:12px}
+
+    .gallery-grid{
+      display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px;
+    }
+    .gallery-item{
+      position:relative; overflow:hidden; border-radius:22px;
+      border:1px solid rgba(255,255,255,.06);
+      min-height:280px;
+      background:#1b1b1b;
+    }
+    .gallery-item img{
+      width:100%; height:100%; object-fit:cover;
+      filter:brightness(.9);
+      transition:transform .35s ease;
+    }
+    .gallery-item:hover img{transform:scale(1.04)}
+    .gallery-label{
+      position:absolute; left:16px; bottom:16px;
+      padding:10px 14px; border-radius:999px;
+      background:rgba(0,0,0,.45); color:#fff;
+      border:1px solid rgba(255,255,255,.10);
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:13px;
+      backdrop-filter:blur(6px);
+    }
+
+    .reviews-grid{
+      display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px;
+    }
+    .review{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:24px;
+      padding:24px;
+    }
+    .stars{
+      color:#e8bb7e; font-size:18px; margin-bottom:14px; letter-spacing:2px;
+    }
+    .review p{
+      margin:0 0 16px 0; line-height:1.7; color:var(--muted);
+      font-family:Arial, Helvetica, sans-serif; font-size:15px;
+    }
+    .review strong{
+      display:block; font-family:Arial, Helvetica, sans-serif;
+      font-size:14px;
+    }
+    .review small{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--muted-2);
+    }
+
+    .faq-grid{
+      display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:18px;
+    }
+    .faq{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:22px;
+      padding:22px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .faq strong{display:block; font-size:16px; margin-bottom:8px}
+    .faq p{margin:0; color:var(--muted); line-height:1.65}
 
     .contact-grid{
       display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px;
@@ -258,82 +353,102 @@
       color:#171717;
       padding:20px 22px;
       border-radius:22px;
+      min-height:106px;
+      box-shadow:0 14px 40px rgba(201,139,70,.16);
       font-family:Arial, Helvetica, sans-serif;
-      min-height:104px;
-      box-shadow:0 14px 40px rgba(200,138,69,.18);
     }
     .icon{
-      width:50px; height:50px; border-radius:16px;
+      width:52px; height:52px;
+      border-radius:16px;
       background:rgba(255,255,255,.32);
       display:grid; place-items:center;
       font-size:22px;
     }
-    .contact-card strong{
-      display:block; font-size:16px; margin-bottom:4px;
-    }
-    .contact-card span{
-      font-size:14px; line-height:1.5;
-    }
-
+    .contact-card strong{display:block; font-size:16px; margin-bottom:4px}
+    .contact-card span{font-size:14px; line-height:1.55}
     .map-wrap{
-      border-radius:24px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
-      min-height:360px;
-      background:#1c1c1c;
+      border-radius:24px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      min-height:360px; background:#1d1d1d;
+      margin-bottom:24px;
     }
-    .map-wrap iframe{
-      width:100%; height:360px; border:0;
+    .map-wrap iframe{width:100%; height:360px; border:0}
+
+    .social-strip{
+      display:flex; flex-wrap:wrap; gap:14px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .social-link{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:13px 18px; border-radius:999px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
     }
 
     .footer{
-      padding:26px 0 46px;
-      color:#bcae9a;
+      padding:26px 0 48px;
+      color:var(--muted-2);
       font-family:Arial, Helvetica, sans-serif;
       font-size:14px;
     }
+    .footer-grid{
+      display:grid; grid-template-columns:1.2fr .8fr;
+      gap:20px;
+      align-items:start;
+    }
+    .footer-box{
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:22px;
+      padding:20px;
+    }
+    .footer-box p{margin:0; line-height:1.7}
+    .footer-box p + p{margin-top:8px}
 
     @media (max-width: 980px){
-      .hero-grid, .prices-grid{
-        grid-template-columns:1fr;
-      }
-      .hero-media, .hero-side{min-height:auto}
-      .hero-media{min-height:520px}
       .nav-links{display:none}
       .mobile-book{display:inline-flex}
+      .hero-grid, .info-grid, .prices-grid, .gallery-grid, .reviews-grid, .faq-grid, .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .hero-media{min-height:520px}
     }
-
     @media (max-width: 640px){
       .container{width:min(var(--max), calc(100% - 20px))}
       .nav{padding:10px 0}
-      .brand-mark{width:48px;height:48px}
+      .brand-mark{width:48px; height:48px}
       .brand-copy strong{font-size:18px}
       .hero{padding-top:14px}
       .hero-content{left:22px; right:22px; bottom:24px}
-      .side-top, .side-bottom, .section-body, .section-card .section-top{padding:22px}
+      .hero-side-block, .section-top, .section-body{padding:22px}
+      .quick-stats{grid-template-columns:1fr}
       .contact-grid{grid-template-columns:1fr}
       .contact-card{padding:18px}
       .book-btn{padding:11px 16px; font-size:13px}
-      .mobile-book{display:inline-flex}
     }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a href="#hjem" class="brand" aria-label="Sentrum Barbershop">
+      <a href="#hjem" class="brand" aria-label="Sentrum Frisør / Barbershop">
         <div class="brand-mark"><span>SB</span></div>
         <div class="brand-copy">
-          <small>Barbershop • Trondheim</small>
+          <small>Frisør / Barbershop • Molde</small>
           <strong>Sentrum</strong>
         </div>
       </a>
 
       <nav class="nav-links">
+        <a href="#om">Om Oss</a>
         <a href="#priser">Priser</a>
-        <a href="#kontakt">Kontakt Oss</a>
-        <a class="book-btn" href="#kontakt">BOOKING</a>
+        <a href="#galleri">Galleri</a>
+        <a href="#anmeldelser">Anmeldelser</a>
+        <a href="#kontakt">Kontakt</a>
+        <a class="book-btn" href="tel:96954664">BOOKING</a>
       </nav>
 
-      <a class="book-btn mobile-book" href="#kontakt">BOOKING</a>
+      <a class="book-btn mobile-book" href="tel:96954664">BOOKING</a>
     </div>
   </header>
 
@@ -342,42 +457,111 @@
       <div class="container panel hero-grid">
         <div class="hero-media">
           <div class="hero-content">
-            <div class="eyebrow">Klassisk stil • moderne finish</div>
-            <h1>S.F BARBERSHOP</h1>
+            <div class="eyebrow">Molde • 7+ år i drift</div>
+            <h1>Sentrum Frisør / Barbershop</h1>
             <p class="lead">
-              Velkommen til Sentrum Barbershop. Vi leverer klassisk herreklipp, skjeggtrim og en rolig barbershop-opplevelse i mørke, premium omgivelser. Fokus på detaljer, kvalitet og et resultat som sitter.
+              En barbershop i Molde med fokus på presis klipp, ryddig skjeggtrim og en rolig, profesjonell opplevelse. For kunder som vil ha mer enn bare en rask time i stolen.
             </p>
+            <div class="hero-points">
+              <span class="hero-pill">4,4 stjerner</span>
+              <span class="hero-pill">99 anmeldelser</span>
+              <span class="hero-pill">Stenger kl. 18</span>
+              <span class="hero-pill">Ring: 96 95 46 64</span>
+            </div>
           </div>
         </div>
 
         <div class="hero-side">
-          <div class="side-top">
-            <div class="eyebrow">Hvorfor velge oss</div>
-            <h2>Presisjon, stil og opplevelse</h2>
+          <div class="hero-side-block">
+            <div class="eyebrow">Hva du får</div>
+            <h2>Klassisk stil. Moderne finish.</h2>
             <div class="feature-list">
               <div class="feature">
-                <strong>Klassisk herreklipp</strong>
-                <span>Rene linjer, god finish og en stil som passer deg.</span>
+                <strong>Herreklipp</strong>
+                <span>Rene linjer, god form og en stil som passer ansikt og hårtype.</span>
               </div>
               <div class="feature">
-                <strong>Skjeggtrim og barbering</strong>
-                <span>Presist arbeid med fokus på form, symmetri og detaljer.</span>
+                <strong>Skjeggtrim</strong>
+                <span>Presis forming og finish med fokus på detaljer og symmetri.</span>
               </div>
               <div class="feature">
-                <strong>Rolig atmosfære</strong>
-                <span>En behagelig salongopplevelse, ikke bare en rask klipp.</span>
+                <strong>Behagelig opplevelse</strong>
+                <span>Rolig atmosfære og personlig service i sentrale omgivelser.</span>
               </div>
             </div>
           </div>
 
-          <div class="side-bottom">
-            <div class="mini-card">
-              <strong>Drop-in eller booking</strong>
-              <p>Ta kontakt for timebestilling eller møt opp dersom det er ledig kapasitet.</p>
+          <div class="hero-side-block">
+            <div class="eyebrow">Salongen kort fortalt</div>
+            <div class="quick-stats">
+              <div class="stat">
+                <strong>7+</strong>
+                <span>år i drift i Molde</span>
+              </div>
+              <div class="stat">
+                <strong>4,4/5</strong>
+                <span>basert på 99 anmeldelser</span>
+              </div>
+              <div class="stat">
+                <strong>Molde</strong>
+                <span>sentral beliggenhet</span>
+              </div>
+              <div class="stat">
+                <strong>18:00</strong>
+                <span>dagens stengetid</span>
+              </div>
             </div>
-            <div class="mini-card">
-              <strong>Sentral beliggenhet</strong>
-              <p>Midt i byen, lett tilgjengelig og enkelt å finne fram.</p>
+          </div>
+
+          <div class="hero-side-block">
+            <div class="eyebrow">Kontakt</div>
+            <div class="cta-stack">
+              <a class="book-btn" href="tel:96954664">Ring for booking</a>
+              <a class="cta-alt" href="#kontakt">Se kontaktinformasjon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="om">
+      <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1512690459411-b0fd1c86b8c8?auto=format&fit=crop&w=1400&q=80')">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">Om salongen</div>
+            <h2>Barbershop-opplevelse i hjertet av Molde</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="section-intro">
+            <p class="lead">
+              Sentrum Frisør / Barbershop har vært i drift i over 7 år og er et naturlig valg for kunder som ønsker en stilren klipp, skjeggtrim og en mer gjennomført salongopplevelse.
+            </p>
+          </div>
+
+          <div class="info-grid">
+            <div class="about-card">
+              <h3>Hvorfor velge Sentrum?</h3>
+              <p>
+                Salongen kombinerer klassisk barberstil med moderne uttrykk. Her handler det ikke bare om å bli ferdig, men om å få et resultat som ser bra ut når du går ut døren og som holder formen etterpå.
+              </p>
+              <div class="check-list">
+                <div class="check"><b>✓</b><span>Erfaren salong med lokal tilstedeværelse i Molde</span></div>
+                <div class="check"><b>✓</b><span>Tydelig fokus på herreklipp, skjegg og velstelt finish</span></div>
+                <div class="check"><b>✓</b><span>God balanse mellom presisjon, service og atmosfære</span></div>
+              </div>
+            </div>
+
+            <div class="highlight-card">
+              <h3>For deg som vil se skarp ut</h3>
+              <p>
+                Enten du ønsker en klassisk herreklipp, oppfriskning før helgen eller en komplett kombinasjon med skjeggtrim, er målet det samme: et ryddig og selvsikkert uttrykk tilpasset deg.
+              </p>
+              <div class="check-list">
+                <div class="check"><b>✓</b><span>Passer både faste kunder og nye besøkende</span></div>
+                <div class="check"><b>✓</b><span>Perfekt før jobb, arrangement eller hverdagsvedlikehold</span></div>
+                <div class="check"><b>✓</b><span>En salong som bygger tillit gjennom godt håndverk</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -387,7 +571,10 @@
     <section id="priser">
       <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1400&q=80')">
         <div class="section-top">
-          <h2>Priser</h2>
+          <div>
+            <div class="eyebrow">Behandlinger</div>
+            <h2>Priser</h2>
+          </div>
         </div>
         <div class="section-body">
           <div class="prices-grid">
@@ -436,15 +623,115 @@
               </div>
             </div>
 
-            <aside class="price-note">
-              <h3>Booking</h3>
-              <p>
-                Prisene kan justeres etter behandling og tidsbruk. Ta kontakt for oppdatert prisliste, spørsmål eller timebestilling.
-              </p>
-              <p style="margin-top:14px;">
-                Ønsker du at jeg bytter disse til de faktiske prisene fra salongen, er det bare å sende dem.
-              </p>
+            <aside class="side-note">
+              <h3>Booking og priser</h3>
+              <p>Prisene over er satt opp som en presentabel førsteversjon av nettsiden.</p>
+              <p>Når du kontakter salongen, bør du be dem bekrefte behandlinger, priser og om booking skal gå via telefon eller eget bookingsystem.</p>
+              <p><strong>Telefon:</strong> 96 95 46 64</p>
             </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galleri">
+      <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1400&q=80')">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">Visuelt inntrykk</div>
+            <h2>Galleri</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="section-intro">
+            <p class="lead">
+              Et godt barbermerke selger ikke bare på tekst. Et galleri gjør det lettere for nye kunder å forstå stil, uttrykk og nivå før de bestiller.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=80" alt="Barberarbeid og detaljert klipp" />
+              <div class="gallery-label">Presisjon</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=80" alt="Klassisk hårklipp hos barber" />
+              <div class="gallery-label">Klassisk klipp</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=80" alt="Barbershop-interiør og kundeopplevelse" />
+              <div class="gallery-label">Atmosfære</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="anmeldelser">
+      <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1400&q=80')">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">Tillit</div>
+            <h2>Anmeldelser</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="section-intro">
+            <p class="lead">
+              Sosialt bevis er viktig for en frisørside. Her er nettsiden satt opp med en tydelig vurderingsseksjon basert på informasjonen du har gitt.
+            </p>
+          </div>
+
+          <div class="reviews-grid">
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <p>4,4 av 5 i rating gir et godt førsteinntrykk og viser at salongen allerede har bygd tillit hos kundene sine.</p>
+              <strong>Google-vurdering</strong>
+              <small>Basert på 99 anmeldelser</small>
+            </div>
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <p>Over 7 år i drift signaliserer stabilitet og erfaring. For mange kunder er det et sterkt tegn på at salongen leverer jevnt godt arbeid.</p>
+              <strong>Lokal tillit</strong>
+              <small>Molde</small>
+            </div>
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <p>Denne seksjonen kan senere oppgraderes med ekte kundeuttalelser, navn og eventuelt skjermbilder dersom salongen ønsker det.</p>
+              <strong>Klar for oppgradering</strong>
+              <small>Neste steg etter godkjenning</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1512690459411-b0fd1c86b8c8?auto=format&fit=crop&w=1400&q=80')">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">Vanlige spørsmål</div>
+            <h2>FAQ</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="faq-grid">
+            <div class="faq">
+              <strong>Hvordan bestiller jeg time?</strong>
+              <p>Per nå er nettsiden satt opp med direkte telefonbooking. Det kan senere kobles til Timma, Fresha eller annet bookingsystem.</p>
+            </div>
+            <div class="faq">
+              <strong>Tilbyr dere både klipp og skjeggtrim?</strong>
+              <p>Ja, siden er bygget opp rundt både herreklipp og skjeggrelaterte behandlinger.</p>
+            </div>
+            <div class="faq">
+              <strong>Kan jeg møte opp uten booking?</strong>
+              <p>Det må bekreftes med salongen. Du kan senere legge inn tydelig informasjon om drop-in dersom de tilbyr det.</p>
+            </div>
+            <div class="faq">
+              <strong>Hvor ligger salongen?</strong>
+              <p>Kontaktseksjonen er satt opp for Molde og kan oppdateres med eksakt adresse når du får den bekreftet.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -453,31 +740,34 @@
     <section id="kontakt">
       <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1400&q=80')">
         <div class="section-top">
-          <h2>Kontakt Oss</h2>
+          <div>
+            <div class="eyebrow">Kom i kontakt</div>
+            <h2>Kontakt Oss</h2>
+          </div>
         </div>
         <div class="section-body">
           <div class="contact-grid">
-            <a class="contact-card" href="tel:+47471234123">
+            <a class="contact-card" href="tel:96954664">
               <div class="icon">☎</div>
               <div>
                 <strong>Telefon</strong>
-                <span>+47 123 12 123</span>
+                <span>96 95 46 64</span>
               </div>
             </a>
 
-            <a class="contact-card" href="mailto:eksempel@epost.com">
+            <div class="contact-card">
               <div class="icon">✉</div>
               <div>
                 <strong>Mail</strong>
-                <span>eksempel@epost.com</span>
+                <span>Legges inn etter godkjenning fra salongen</span>
               </div>
-            </a>
+            </div>
 
             <div class="contact-card">
               <div class="icon">◷</div>
               <div>
                 <strong>Åpningstider</strong>
-                <span>Mandag–Fredag: 10:00–18:00<br/>Lørdag: 10:00–16:00</span>
+                <span>Åpen nå<br>Stenger kl. 18</span>
               </div>
             </div>
 
@@ -485,18 +775,24 @@
               <div class="icon">⌖</div>
               <div>
                 <strong>Adresse</strong>
-                <span>Storgata 12, 6413 Molde</span>
+                <span>Molde sentrum<br>Eksakt adresse legges inn etter bekreftelse</span>
               </div>
             </a>
           </div>
 
           <div class="map-wrap">
             <iframe
-              title="Kart"
+              title="Kart Molde"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps?q=Molde&z=14&output=embed">
             </iframe>
+          </div>
+
+          <div class="social-strip">
+            <a class="social-link" href="tel:96954664">Ring salongen</a>
+            <a class="social-link" href="#">Instagram legges inn her</a>
+            <a class="social-link" href="#">Bookinglenke kan legges inn her</a>
           </div>
         </div>
       </div>
@@ -504,13 +800,19 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
-      © <span id="year"></span> Sentrum Barbershop. Nettside klargjort for /barber på farstadtechnology.no
+    <div class="container footer-grid">
+      <div class="footer-box">
+        <p><strong>Sentrum Frisør / Barbershop</strong></p>
+        <p>Første nettsideutkast laget for presentasjon og salgsdialog.</p>
+        <p>Denne siden kan enkelt oppdateres med ekte priser, korrekt adresse, e-post, Instagram, bookingsystem og kundeanmeldelser etter at salongen har godkjent oppsettet.</p>
+      </div>
+      <div class="footer-box">
+        <p><strong>Kontaktinfo som er lagt inn nå</strong></p>
+        <p>Telefon: 96 95 46 64</p>
+        <p>Sted: Molde</p>
+        <p>Rating: 4,4 (99 anmeldelser)</p>
+      </div>
     </div>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
