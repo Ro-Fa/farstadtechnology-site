@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentrum Barbershop</title>
+  <meta name="description" content="Sentrum Barbershop – klassisk herreklipp, skjeggtrim og barbering i en mørk og premium stil." />
+  <style>
+    :root{
+      --bg:#1f1f1f;
+      --bg-soft:#2a2a2a;
+      --card:#2f2f2f;
+      --text:#f4efe8;
+      --muted:#d8cfc5;
+      --line:rgba(255,255,255,.08);
+      --accent:#c88a45;
+      --accent-dark:#a56d33;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:18px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(200,138,69,.08), transparent 35%),
+        linear-gradient(180deg, #171717 0%, #1f1f1f 100%);
+      color:var(--text);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+
+    .site-header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(20,20,20,.88);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:20px; padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:14px;
+    }
+    .brand-mark{
+      width:58px; height:58px; border-radius:14px;
+      background:linear-gradient(180deg, #111, #242424);
+      border:1px solid rgba(255,255,255,.08);
+      display:grid; place-items:center;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .brand-mark::before{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(200,138,69,.22), transparent 55%);
+    }
+    .brand-mark span{
+      position:relative;
+      font-size:18px; letter-spacing:1px; font-weight:700;
+    }
+    .brand-copy small{
+      display:block; color:#bcae9a; font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      margin-bottom:3px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .brand-copy strong{
+      display:block; font-size:22px; line-height:1;
+    }
+
+    .nav-links{
+      display:flex; align-items:center; gap:28px;
+      font-size:15px;
+    }
+    .nav-links a{opacity:.92}
+    .nav-links a:hover{color:#fff}
+    .book-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 20px; border-radius:999px;
+      background:var(--accent); color:#fff; font-weight:700;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 10px 30px rgba(200,138,69,.22);
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing:.3px;
+    }
+    .book-btn:hover{background:var(--accent-dark)}
+
+    .mobile-book{display:none}
+
+    .panel{
+      background:linear-gradient(180deg, rgba(45,45,45,.96), rgba(37,37,37,.96));
+      border:1px solid var(--line);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero{
+      padding:26px 0 18px;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:0;
+      min-height:620px;
+    }
+
+    .hero-media{
+      position:relative;
+      min-height:620px;
+      background:
+        linear-gradient(to right, rgba(0,0,0,.55), rgba(0,0,0,.20)),
+        url('https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    }
+    .hero-media::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.50));
+    }
+    .hero-content{
+      position:absolute; left:40px; bottom:42px; z-index:2; max-width:600px;
+    }
+    .eyebrow{
+      color:#d6b289; letter-spacing:2px; text-transform:uppercase;
+      font-family: Arial, Helvetica, sans-serif; font-size:12px; margin-bottom:12px;
+    }
+    h1,h2,h3{margin:0 0 14px 0; font-weight:400}
+    h1{font-size:clamp(40px, 6vw, 76px); line-height:.96}
+    h2{font-size:clamp(34px, 5vw, 58px); line-height:1}
+    .lead{
+      font-size:17px; line-height:1.65; color:var(--muted); max-width:560px;
+    }
+
+    .hero-side{
+      display:grid;
+      grid-template-rows:1fr auto;
+      min-height:620px;
+      background:
+        linear-gradient(180deg, rgba(44,44,44,.97), rgba(37,37,37,.97));
+      position:relative;
+    }
+    .hero-side::before{
+      content:"";
+      position:absolute; inset:auto 0 180px auto;
+      width:260px; height:260px; border-radius:999px;
+      background:radial-gradient(circle, rgba(200,138,69,.18), transparent 65%);
+      filter:blur(10px);
+    }
+    .side-top{
+      padding:42px 34px 24px;
+      display:flex; flex-direction:column; justify-content:center;
+      border-bottom:1px solid var(--line);
+    }
+    .feature-list{
+      display:grid; gap:14px; margin-top:16px;
+      font-family: Arial, Helvetica, sans-serif;
+      color:#ece1d3;
+    }
+    .feature{
+      padding:14px 16px; border-radius:16px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .feature strong{display:block; margin-bottom:4px; font-size:15px}
+    .feature span{font-size:13px; color:#cdbfaa}
+    .side-bottom{
+      padding:28px 34px 34px;
+      display:grid; gap:14px;
+      align-content:start;
+    }
+    .mini-card{
+      padding:16px 18px; border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .mini-card strong{
+      display:block; font-family:Arial, Helvetica, sans-serif; font-size:14px; margin-bottom:6px;
+    }
+    .mini-card p{
+      margin:0; color:var(--muted); line-height:1.5; font-size:14px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    section{
+      padding:18px 0;
+    }
+
+    .section-card{
+      position:relative;
+      overflow:hidden;
+    }
+    .section-card .section-top{
+      min-height:240px;
+      position:relative;
+      display:flex; align-items:end;
+      padding:34px;
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.30), rgba(0,0,0,.10)),
+        var(--bg-image) center/cover no-repeat;
+    }
+    .section-card .section-top::after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:-1px; height:90px;
+      background:var(--bg-soft);
+      clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 100%);
+    }
+    .section-card .section-top h2{
+      position:relative; z-index:2;
+    }
+    .section-body{
+      background:var(--bg-soft);
+      padding:32px 34px 38px;
+    }
+
+    .prices-grid{
+      display:grid; grid-template-columns:1fr 320px; gap:26px;
+      align-items:start;
+    }
+    .price-list{
+      display:grid; gap:18px;
+    }
+    .price-row{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      padding-bottom:10px;
+    }
+    .price-row .name{
+      font-size:18px;
+    }
+    .price-row .desc{
+      margin-top:5px; color:#bcae9a; font-size:13px; font-family:Arial, Helvetica, sans-serif;
+    }
+    .price-row .value{
+      white-space:nowrap; color:#ead1b2; font-size:18px;
+    }
+    .price-note{
+      padding:20px; border-radius:20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .price-note h3{font-size:24px; margin-bottom:10px}
+    .price-note p{margin:0; line-height:1.6; color:var(--muted)}
+
+    .contact-grid{
+      display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px;
+      margin-bottom:28px;
+    }
+    .contact-card{
+      display:flex; align-items:center; gap:16px;
+      background:var(--accent);
+      color:#171717;
+      padding:20px 22px;
+      border-radius:22px;
+      font-family:Arial, Helvetica, sans-serif;
+      min-height:104px;
+      box-shadow:0 14px 40px rgba(200,138,69,.18);
+    }
+    .icon{
+      width:50px; height:50px; border-radius:16px;
+      background:rgba(255,255,255,.32);
+      display:grid; place-items:center;
+      font-size:22px;
+    }
+    .contact-card strong{
+      display:block; font-size:16px; margin-bottom:4px;
+    }
+    .contact-card span{
+      font-size:14px; line-height:1.5;
+    }
+
+    .map-wrap{
+      border-radius:24px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
+      min-height:360px;
+      background:#1c1c1c;
+    }
+    .map-wrap iframe{
+      width:100%; height:360px; border:0;
+    }
+
+    .footer{
+      padding:26px 0 46px;
+      color:#bcae9a;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:14px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid, .prices-grid{
+        grid-template-columns:1fr;
+      }
+      .hero-media, .hero-side{min-height:auto}
+      .hero-media{min-height:520px}
+      .nav-links{display:none}
+      .mobile-book{display:inline-flex}
+    }
+
+    @media (max-width: 640px){
+      .container{width:min(var(--max), calc(100% - 20px))}
+      .nav{padding:10px 0}
+      .brand-mark{width:48px;height:48px}
+      .brand-copy strong{font-size:18px}
+      .hero{padding-top:14px}
+      .hero-content{left:22px; right:22px; bottom:24px}
+      .side-top, .side-bottom, .section-body, .section-card .section-top{padding:22px}
+      .contact-grid{grid-template-columns:1fr}
+      .contact-card{padding:18px}
+      .book-btn{padding:11px 16px; font-size:13px}
+      .mobile-book{display:inline-flex}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#hjem" class="brand" aria-label="Sentrum Barbershop">
+        <div class="brand-mark"><span>SB</span></div>
+        <div class="brand-copy">
+          <small>Barbershop • Trondheim</small>
+          <strong>Sentrum</strong>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#priser">Priser</a>
+        <a href="#kontakt">Kontakt Oss</a>
+        <a class="book-btn" href="#kontakt">BOOKING</a>
+      </nav>
+
+      <a class="book-btn mobile-book" href="#kontakt">BOOKING</a>
+    </div>
+  </header>
+
+  <main id="hjem">
+    <section class="hero">
+      <div class="container panel hero-grid">
+        <div class="hero-media">
+          <div class="hero-content">
+            <div class="eyebrow">Klassisk stil • moderne finish</div>
+            <h1>S.F BARBERSHOP</h1>
+            <p class="lead">
+              Velkommen til Sentrum Barbershop. Vi leverer klassisk herreklipp, skjeggtrim og en rolig barbershop-opplevelse i mørke, premium omgivelser. Fokus på detaljer, kvalitet og et resultat som sitter.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="side-top">
+            <div class="eyebrow">Hvorfor velge oss</div>
+            <h2>Presisjon, stil og opplevelse</h2>
+            <div class="feature-list">
+              <div class="feature">
+                <strong>Klassisk herreklipp</strong>
+                <span>Rene linjer, god finish og en stil som passer deg.</span>
+              </div>
+              <div class="feature">
+                <strong>Skjeggtrim og barbering</strong>
+                <span>Presist arbeid med fokus på form, symmetri og detaljer.</span>
+              </div>
+              <div class="feature">
+                <strong>Rolig atmosfære</strong>
+                <span>En behagelig salongopplevelse, ikke bare en rask klipp.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-bottom">
+            <div class="mini-card">
+              <strong>Drop-in eller booking</strong>
+              <p>Ta kontakt for timebestilling eller møt opp dersom det er ledig kapasitet.</p>
+            </div>
+            <div class="mini-card">
+              <strong>Sentral beliggenhet</strong>
+              <p>Midt i byen, lett tilgjengelig og enkelt å finne fram.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="priser">
+      <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1400&q=80')">
+        <div class="section-top">
+          <h2>Priser</h2>
+        </div>
+        <div class="section-body">
+          <div class="prices-grid">
+            <div class="price-list">
+              <div class="price-row">
+                <div>
+                  <div class="name">Senior</div>
+                  <div class="desc">Klassisk klipp tilpasset ønsket stil</div>
+                </div>
+                <div class="value">1000 kr</div>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="name">Hår og skjegg</div>
+                  <div class="desc">Komplett pakke med klipp og skjeggtrim</div>
+                </div>
+                <div class="value">500 kr</div>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="name">Herreklipp</div>
+                  <div class="desc">Presis herreklipp med moderne eller klassisk uttrykk</div>
+                </div>
+                <div class="value">300 kr</div>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="name">Klassisk herreklipp</div>
+                  <div class="desc">Tradisjonell stil med fokus på rene linjer</div>
+                </div>
+                <div class="value">700 kr</div>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="name">Skjeggtrim med knivbarbering</div>
+                  <div class="desc">Forming, finish og ryddig overgang</div>
+                </div>
+                <div class="value">600 kr</div>
+              </div>
+              <div class="price-row">
+                <div>
+                  <div class="name">Tråding</div>
+                  <div class="desc">Detaljarbeid for bryn og mindre områder</div>
+                </div>
+                <div class="value">299 kr</div>
+              </div>
+            </div>
+
+            <aside class="price-note">
+              <h3>Booking</h3>
+              <p>
+                Prisene kan justeres etter behandling og tidsbruk. Ta kontakt for oppdatert prisliste, spørsmål eller timebestilling.
+              </p>
+              <p style="margin-top:14px;">
+                Ønsker du at jeg bytter disse til de faktiske prisene fra salongen, er det bare å sende dem.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container panel section-card" style="--bg-image:url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1400&q=80')">
+        <div class="section-top">
+          <h2>Kontakt Oss</h2>
+        </div>
+        <div class="section-body">
+          <div class="contact-grid">
+            <a class="contact-card" href="tel:+47471234123">
+              <div class="icon">☎</div>
+              <div>
+                <strong>Telefon</strong>
+                <span>+47 123 12 123</span>
+              </div>
+            </a>
+
+            <a class="contact-card" href="mailto:eksempel@epost.com">
+              <div class="icon">✉</div>
+              <div>
+                <strong>Mail</strong>
+                <span>eksempel@epost.com</span>
+              </div>
+            </a>
+
+            <div class="contact-card">
+              <div class="icon">◷</div>
+              <div>
+                <strong>Åpningstider</strong>
+                <span>Mandag–Fredag: 10:00–18:00<br/>Lørdag: 10:00–16:00</span>
+              </div>
+            </div>
+
+            <a class="contact-card" href="https://maps.google.com/?q=Trondheim" target="_blank" rel="noreferrer">
+              <div class="icon">⌖</div>
+              <div>
+                <strong>Adresse</strong>
+                <span>Eksempelgata 12, 7013 Trondheim</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="map-wrap">
+            <iframe
+              title="Kart"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Trondheim&z=14&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © <span id="year"></span> Sentrum Barbershop. Nettside klargjort for /barber på farstadtechnology.no
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
