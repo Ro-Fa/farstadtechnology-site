@@ -1,0 +1,550 @@
+import { useMemo, useState } from 'react';
+
+type Service = {
+  id: string;
+  name: string;
+  duration: number;
+  price: number;
+};
+
+type Staff = {
+  id: string;
+  name: string;
+  role: string;
+};
+
+type BookingStatus = 'Bekreftet' | 'Venter' | 'Ferdig' | 'Avbestilt';
+
+type Booking = {
+  id: string;
+  customer: string;
+  phone: string;
+  email: string;
+  note: string;
+  serviceId: string;
+  staffId: string;
+  date: string;
+  time: string;
+  status: BookingStatus;
+  createdAt: string;
+};
+
+const services: Service[] = [
+  { id: 'haircut', name: 'Herreklipp', duration: 45, price: 399 },
+  { id: 'hair-beard', name: 'Hår + skjegg', duration: 60, price: 599 },
+  { id: 'beard', name: 'Skjeggtrim', duration: 30, price: 299 },
+  { id: 'senior', name: 'Senior', duration: 45, price: 349 },
+];
+
+const staffList: Staff[] = [
+  { id: 'ali', name: 'Ali', role: 'Barber' },
+  { id: 'sara', name: 'Sara', role: 'Frisør' },
+  { id: 'jonas', name: 'Jonas', role: 'Barber' },
+];
+
+const timeSlots = [
+  '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+  '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
+  '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+];
+
+const initialBookings: Booking[] = [
+  {
+    id: 'b1',
+    customer: 'Ola Nordmann',
+    phone: '99112233',
+    email: 'ola@example.no',
+    note: 'Kort på sidene',
+    serviceId: 'haircut',
+    staffId: 'ali',
+    date: '2026-04-21',
+    time: '10:00',
+    status: 'Bekreftet',
+    createdAt: '2026-04-18 10:15',
+  },
+  {
+    id: 'b2',
+    customer: 'Per Hansen',
+    phone: '98776655',
+    email: 'per@example.no',
+    note: 'Vil ha skjeggtrim også',
+    serviceId: 'hair-beard',
+    staffId: 'sara',
+    date: '2026-04-21',
+    time: '12:00',
+    status: 'Venter',
+    createdAt: '2026-04-18 11:40',
+  },
+  {
+    id: 'b3',
+    customer: 'Jonas Berg',
+    phone: '41223344',
+    email: '',
+    note: '',
+    serviceId: 'beard',
+    staffId: 'ali',
+    date: '2026-04-21',
+    time: '15:30',
+    status: 'Ferdig',
+    createdAt: '2026-04-18 12:05',
+  },
+];
+
+function formatCurrency(value: number) {
+  return `${value} kr`;
+}
+
+function todayPlus(days: number) {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+function classNames(...items: Array<string | false | null | undefined>) {
+  return items.filter(Boolean).join(' ');
+}
+
+export default function Fase3BookingPrototype() {
+  const [selectedServiceId, setSelectedServiceId] = useState<string>(services[0].id);
+  const [selectedStaffId, setSelectedStaffId] = useState<string>(staffList[0].id);
+  const [selectedDate, setSelectedDate] = useState<string>(todayPlus(1));
+  const [selectedTime, setSelectedTime] = useState<string>('11:00');
+  const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+  const [customerNote, setCustomerNote] = useState('');
+  const [bookings, setBookings] = useState<Booking[]>(initialBookings);
+  const [adminFilterDate, setAdminFilterDate] = useState<string>('2026-04-21');
+  const [message, setMessage] = useState<string>('');
+
+  const selectedService = useMemo(
+    () => services.find((service) => service.id === selectedServiceId) ?? services[0],
+    [selectedServiceId]
+  );
+
+  const selectedStaff = useMemo(
+    () => staffList.find((staff) => staff.id === selectedStaffId) ?? staffList[0],
+    [selectedStaffId]
+  );
+
+  const bookedSlotsForSelection = useMemo(() => {
+    return bookings
+      .filter(
+        (booking) =>
+          booking.date === selectedDate &&
+          booking.staffId === selectedStaffId &&
+          booking.status !== 'Avbestilt'
+      )
+      .map((booking) => booking.time);
+  }, [bookings, selectedDate, selectedStaffId]);
+
+  const visibleBookings = useMemo(() => {
+    return bookings
+      .filter((booking) => booking.date === adminFilterDate)
+      .sort((a, b) => a.time.localeCompare(b.time));
+  }, [bookings, adminFilterDate]);
+
+  const totalRevenue = useMemo(() => {
+    return visibleBookings
+      .filter((booking) => booking.status !== 'Avbestilt')
+      .reduce((sum, booking) => {
+        const service = services.find((item) => item.id === booking.serviceId);
+        return sum + (service?.price ?? 0);
+      }, 0);
+  }, [visibleBookings]);
+
+  const confirmedCount = visibleBookings.filter((booking) => booking.status === 'Bekreftet').length;
+  const waitingCount = visibleBookings.filter((booking) => booking.status === 'Venter').length;
+  const cancelledCount = visibleBookings.filter((booking) => booking.status === 'Avbestilt').length;
+
+  function resetForm() {
+    setCustomerName('');
+    setCustomerPhone('');
+    setCustomerEmail('');
+    setCustomerNote('');
+    setSelectedTime('11:00');
+  }
+
+  function handleCreateBooking() {
+    if (!customerName.trim() || !customerPhone.trim()) {
+      setMessage('Fyll inn navn og telefonnummer før du oppretter bookingen.');
+      return;
+    }
+
+    if (!selectedDate || !selectedTime || !selectedServiceId || !selectedStaffId) {
+      setMessage('Velg behandling, ansatt, dato og tidspunkt.');
+      return;
+    }
+
+    const slotTaken = bookings.some(
+      (booking) =>
+        booking.date === selectedDate &&
+        booking.staffId === selectedStaffId &&
+        booking.time === selectedTime &&
+        booking.status !== 'Avbestilt'
+    );
+
+    if (slotTaken) {
+      setMessage('Denne tiden er allerede opptatt for valgt ansatt.');
+      return;
+    }
+
+    const newBooking: Booking = {
+      id: `b${Date.now()}`,
+      customer: customerName.trim(),
+      phone: customerPhone.trim(),
+      email: customerEmail.trim(),
+      note: customerNote.trim(),
+      serviceId: selectedServiceId,
+      staffId: selectedStaffId,
+      date: selectedDate,
+      time: selectedTime,
+      status: 'Bekreftet',
+      createdAt: new Date().toLocaleString('no-NO'),
+    };
+
+    setBookings((current) => [...current, newBooking]);
+    setAdminFilterDate(selectedDate);
+    setMessage(`Booking opprettet for ${customerName.trim()} ${selectedDate} kl. ${selectedTime}.`);
+    resetForm();
+  }
+
+  function updateBookingStatus(id: string, status: BookingStatus) {
+    setBookings((current) =>
+      current.map((booking) => (booking.id === id ? { ...booking, status } : booking))
+    );
+  }
+
+  function deleteBooking(id: string) {
+    setBookings((current) => current.filter((booking) => booking.id !== id));
+  }
+
+  const statusColor: Record<BookingStatus, string> = {
+    Bekreftet: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/20',
+    Venter: 'bg-amber-500/15 text-amber-300 border-amber-500/20',
+    Ferdig: 'bg-sky-500/15 text-sky-300 border-sky-500/20',
+    Avbestilt: 'bg-rose-500/15 text-rose-300 border-rose-500/20',
+  };
+
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+      <div className="mx-auto max-w-7xl px-4 py-6 md:px-8">
+        <header className="mb-6 flex flex-col gap-4 rounded-3xl border border-white/10 bg-zinc-900/80 p-6 shadow-2xl shadow-black/30 backdrop-blur md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.35em] text-amber-300/80">Fase 3 prototype</p>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Fungerende bookingsystem-demo</h1>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400 md:text-base">
+              Denne versjonen er gjort om fra ren prototype til en faktisk fungerende frontend-demo med bookingflyt,
+              blokkering av opptatte tider og et enkelt adminpanel som kan oppdatere status på bookinger.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 text-sm md:min-w-[300px]">
+            <div className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+              <div className="text-zinc-400">Valgt ansatt</div>
+              <div className="mt-2 text-2xl font-semibold">{selectedStaff.name}</div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+              <div className="text-zinc-400">Valgt behandling</div>
+              <div className="mt-2 text-2xl font-semibold">{selectedService.name}</div>
+            </div>
+          </div>
+        </header>
+
+        {message && (
+          <div className="mb-6 rounded-2xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+            {message}
+          </div>
+        )}
+
+        <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+          <section className="rounded-3xl border border-white/10 bg-zinc-900 p-5 shadow-xl shadow-black/20 md:p-6">
+            <div className="mb-5 flex items-center justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Kundeside</p>
+                <h2 className="mt-2 text-2xl font-semibold">Bestill time</h2>
+              </div>
+              <div className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-200">
+                Aktiv demo
+              </div>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-2">
+              <div className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+                <h3 className="text-lg font-medium">1. Velg behandling</h3>
+                <div className="mt-4 space-y-3">
+                  {services.map((service) => (
+                    <button
+                      type="button"
+                      key={service.id}
+                      onClick={() => setSelectedServiceId(service.id)}
+                      className={classNames(
+                        'w-full rounded-2xl border p-4 text-left transition',
+                        selectedServiceId === service.id
+                          ? 'border-amber-300/40 bg-amber-400/10'
+                          : 'border-white/10 bg-zinc-900 hover:border-amber-300/20 hover:bg-zinc-900/80'
+                      )}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <div className="font-medium">{service.name}</div>
+                          <div className="mt-1 text-sm text-zinc-400">{service.duration} min</div>
+                        </div>
+                        <div className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-amber-200">
+                          {formatCurrency(service.price)}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+                <h3 className="text-lg font-medium">2. Velg ansatt</h3>
+                <div className="mt-4 grid gap-3">
+                  {staffList.map((person) => (
+                    <button
+                      type="button"
+                      key={person.id}
+                      onClick={() => setSelectedStaffId(person.id)}
+                      className={classNames(
+                        'flex items-center justify-between rounded-2xl border p-4 text-left transition',
+                        selectedStaffId === person.id
+                          ? 'border-amber-300/40 bg-amber-400/10'
+                          : 'border-white/10 bg-zinc-900 hover:border-amber-300/20'
+                      )}
+                    >
+                      <div>
+                        <div className="font-medium">{person.name}</div>
+                        <div className="text-sm text-zinc-400">{person.role}</div>
+                      </div>
+                      <span className="rounded-full border border-white/10 px-4 py-2 text-sm text-zinc-300">
+                        {selectedStaffId === person.id ? 'Valgt' : 'Velg'}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-white/10 bg-zinc-950 p-4">
+              <h3 className="text-lg font-medium">3. Velg dato</h3>
+              <div className="mt-4 flex max-w-sm items-center gap-3">
+                <input
+                  type="date"
+                  value={selectedDate}
+                  min={todayPlus(0)}
+                  onChange={(event) => setSelectedDate(event.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-white/10 bg-zinc-950 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-lg font-medium">4. Velg tidspunkt</h3>
+                <div className="text-sm text-zinc-400">Opptatte tider skjules ikke, men markeres som utilgjengelige.</div>
+              </div>
+              <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+                {timeSlots.map((time) => {
+                  const isTaken = bookedSlotsForSelection.includes(time);
+                  const isSelected = selectedTime === time;
+                  return (
+                    <button
+                      key={time}
+                      type="button"
+                      disabled={isTaken}
+                      onClick={() => setSelectedTime(time)}
+                      className={classNames(
+                        'rounded-2xl border px-3 py-3 text-sm font-medium transition',
+                        isTaken && 'cursor-not-allowed border-zinc-800 bg-zinc-900 text-zinc-500 line-through',
+                        !isTaken && isSelected && 'border-amber-300/40 bg-amber-400/10 text-amber-100',
+                        !isTaken && !isSelected && 'border-white/10 bg-zinc-900 text-zinc-100 hover:border-amber-300/30 hover:text-amber-200'
+                      )}
+                    >
+                      {time}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-white/10 bg-zinc-950 p-4">
+              <h3 className="text-lg font-medium">5. Kundeinformasjon</h3>
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                <input
+                  value={customerName}
+                  onChange={(event) => setCustomerName(event.target.value)}
+                  className="rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 outline-none placeholder:text-zinc-500"
+                  placeholder="Navn"
+                />
+                <input
+                  value={customerPhone}
+                  onChange={(event) => setCustomerPhone(event.target.value)}
+                  className="rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 outline-none placeholder:text-zinc-500"
+                  placeholder="Telefonnummer"
+                />
+                <input
+                  value={customerEmail}
+                  onChange={(event) => setCustomerEmail(event.target.value)}
+                  className="rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 outline-none placeholder:text-zinc-500 md:col-span-2"
+                  placeholder="E-post (valgfritt)"
+                />
+                <textarea
+                  value={customerNote}
+                  onChange={(event) => setCustomerNote(event.target.value)}
+                  className="min-h-[100px] rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3 outline-none placeholder:text-zinc-500 md:col-span-2"
+                  placeholder="Kommentar eller spesielle ønsker"
+                />
+              </div>
+
+              <div className="mt-5 rounded-2xl border border-white/10 bg-zinc-900 p-4 text-sm text-zinc-300">
+                <div><span className="text-zinc-500">Behandling:</span> {selectedService.name}</div>
+                <div><span className="text-zinc-500">Ansatt:</span> {selectedStaff.name}</div>
+                <div><span className="text-zinc-500">Dato:</span> {selectedDate}</div>
+                <div><span className="text-zinc-500">Tid:</span> {selectedTime}</div>
+                <div><span className="text-zinc-500">Pris:</span> {formatCurrency(selectedService.price)}</div>
+              </div>
+
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="text-sm text-zinc-400">Neste steg i full versjon er database, SMS/e-post og innlogging.</div>
+                <button
+                  type="button"
+                  onClick={handleCreateBooking}
+                  className="rounded-full bg-amber-500 px-5 py-3 font-medium text-zinc-950 transition hover:brightness-95"
+                >
+                  Opprett booking
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-6">
+            <div className="rounded-3xl border border-white/10 bg-zinc-900 p-5 shadow-xl shadow-black/20 md:p-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Admin</p>
+                <h2 className="mt-2 text-2xl font-semibold">Salongoversikt</h2>
+              </div>
+
+              <div className="mt-4">
+                <label className="mb-2 block text-sm text-zinc-400">Filtrer på dato</label>
+                <input
+                  type="date"
+                  value={adminFilterDate}
+                  onChange={(event) => setAdminFilterDate(event.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-zinc-950 px-4 py-3 outline-none"
+                />
+              </div>
+
+              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+                  <div className="text-sm text-zinc-400">Omsetning</div>
+                  <div className="mt-2 text-2xl font-semibold">{formatCurrency(totalRevenue)}</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+                  <div className="text-sm text-zinc-400">Bekreftet</div>
+                  <div className="mt-2 text-2xl font-semibold">{confirmedCount}</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+                  <div className="text-sm text-zinc-400">Venter / avbestilt</div>
+                  <div className="mt-2 text-2xl font-semibold">{waitingCount} / {cancelledCount}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-white/10 bg-zinc-900 p-5 shadow-xl shadow-black/20 md:p-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-xl font-semibold">Bookinger</h3>
+                <div className="text-sm text-zinc-400">{visibleBookings.length} stk</div>
+              </div>
+
+              <div className="mt-4 space-y-3">
+                {visibleBookings.length === 0 && (
+                  <div className="rounded-2xl border border-dashed border-white/10 bg-zinc-950 p-6 text-sm text-zinc-400">
+                    Ingen bookinger for valgt dato ennå.
+                  </div>
+                )}
+
+                {visibleBookings.map((booking) => {
+                  const service = services.find((item) => item.id === booking.serviceId);
+                  const staff = staffList.find((item) => item.id === booking.staffId);
+                  return (
+                    <div key={booking.id} className="rounded-2xl border border-white/10 bg-zinc-950 p-4">
+                      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+                        <div>
+                          <div className="text-lg font-medium">{booking.customer}</div>
+                          <div className="mt-1 text-sm text-zinc-400">
+                            {service?.name} • {staff?.name} • {booking.time}
+                          </div>
+                          <div className="mt-1 text-sm text-zinc-500">{booking.phone}{booking.email ? ` • ${booking.email}` : ''}</div>
+                          {booking.note && <div className="mt-2 text-sm text-zinc-400">Notat: {booking.note}</div>}
+                          <div className="mt-2 text-xs text-zinc-500">Opprettet: {booking.createdAt}</div>
+                        </div>
+
+                        <div className="flex flex-col gap-3 xl:items-end">
+                          <div className={classNames('rounded-full border px-3 py-1 text-sm', statusColor[booking.status])}>
+                            {booking.status}
+                          </div>
+
+                          <div className="flex flex-wrap gap-2">
+                            <button
+                              type="button"
+                              onClick={() => updateBookingStatus(booking.id, 'Bekreftet')}
+                              className="rounded-full border border-white/10 px-3 py-2 text-xs text-zinc-300"
+                            >
+                              Bekreft
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => updateBookingStatus(booking.id, 'Ferdig')}
+                              className="rounded-full border border-white/10 px-3 py-2 text-xs text-zinc-300"
+                            >
+                              Marker ferdig
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => updateBookingStatus(booking.id, 'Avbestilt')}
+                              className="rounded-full border border-rose-400/20 bg-rose-400/10 px-3 py-2 text-xs text-rose-200"
+                            >
+                              Avbestill
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => deleteBooking(booking.id)}
+                              className="rounded-full border border-white/10 px-3 py-2 text-xs text-zinc-400"
+                            >
+                              Slett
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-white/10 bg-zinc-900 p-5 shadow-xl shadow-black/20 md:p-6">
+              <h3 className="text-xl font-semibold">Neste utviklingssteg</h3>
+              <div className="mt-4 grid gap-3 text-sm text-zinc-300">
+                {[
+                  'Lagre bookinger i database som Supabase eller Firebase',
+                  'Innlogging for admin og ansatte',
+                  'Egne åpningstider og pauser per ansatt',
+                  'Automatiske SMS- og e-postvarsler',
+                  'Flytting og redigering av eksisterende timer',
+                  'Eget kunderegister med historikk',
+                  'Koble systemet til /booking på nettsiden',
+                  'Rollebasert adminpanel for flere salonger',
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-white/10 bg-zinc-950 px-4 py-3">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+}
