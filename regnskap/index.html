@@ -1,0 +1,49 @@
+export default function RegnskapsAppWebsite() {
+  const features = [
+    {
+      title: 'Før timer raskt',
+      text: 'Legg inn arbeidstimer, dato, tillegg og notater i en enkel og ryddig flyt.',
+    },
+    {
+      title: 'Lag profesjonell PDF',
+      text: 'Generer pene timelister og dokumentasjon som er klare til å sendes videre.',
+    },
+    {
+      title: 'Full oversikt',
+      text: 'Se historikk, arbeidsgivere og tidligere PDF-er samlet på ett sted.',
+    },
+  ];
+
+  const steps = [
+    'Registrer arbeidsgiver og firmaopplysninger',
+    'Før timer med dato, klokkeslett og tillegg',
+    'Eksporter og del PDF med få trykk',
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <a href="#home" className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-sm font-semibold text-white shadow-sm">
+              RA
+            </div>
+            <div>
+              <p className="text-base font-semibold tracking-tight">Regnskaps App</p>
+              <p className="text-xs text-slate-500">Timer, PDF og oversikt</p>
+            </div>
+          </a>
+
+          <nav className="hidden items-center gap-8 text-sm text-slate-600 md:flex">
+            <a href="#features" className="transition hover:text-slate-900">Funksjoner</a>
+            <a href="#workflow" className="transition hover:text-slate-900">Hvordan det virker</a>
+            <a href="#preview" className="transition hover:text-slate-900">Forhåndsvisning</a>
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#preview"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-900"
+            >
+              Se demo
+            </
