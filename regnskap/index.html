@@ -46,4 +46,230 @@ export default function RegnskapsAppWebsite() {
               className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-900"
             >
               Se demo
-            </
+            </a>
+            <a
+              href="#contact"
+              className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800"
+            >
+              Kom i gang
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main id="home">
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.14),transparent_45%)]" />
+          <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-20 lg:grid-cols-2 lg:py-28">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                Enkel timeregistrering for arbeidsdager ute i felt
+              </div>
+
+              <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                En moderne nettside for regnskapsappen din.
+              </h1>
+
+              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+                Bygget i samme stil som appen: ren, profesjonell og lett å bruke. Perfekt for å vise frem appen,
+                forklare funksjonene og gjøre det enkelt å komme i gang.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a
+                  href="#preview"
+                  className="rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:-translate-y-0.5 hover:bg-slate-800"
+                >
+                  Se nettsiden
+                </a>
+                <a
+                  href="#features"
+                  className="rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:text-slate-900"
+                >
+                  Utforsk funksjoner
+                </a>
+              </div>
+
+              <div className="mt-10 grid max-w-lg grid-cols-3 gap-4">
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <p className="text-2xl font-semibold tracking-tight">Rask</p>
+                  <p className="mt-1 text-sm text-slate-500">Enkel registrering</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <p className="text-2xl font-semibold tracking-tight">PDF</p>
+                  <p className="mt-1 text-sm text-slate-500">Klar til deling</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <p className="text-2xl font-semibold tracking-tight">Oversikt</p>
+                  <p className="mt-1 text-sm text-slate-500">Historikk samlet</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="preview" className="relative">
+              <div className="absolute -left-8 top-10 hidden h-32 w-32 rounded-full bg-slate-200/60 blur-3xl lg:block" />
+              <div className="absolute -right-6 bottom-10 hidden h-36 w-36 rounded-full bg-slate-300/40 blur-3xl lg:block" />
+
+              <div className="mx-auto max-w-md rounded-[2rem] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-300/30">
+                <div className="rounded-[1.5rem] bg-slate-950 p-4 text-white">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Dashboard</p>
+                      <h2 className="mt-2 text-2xl font-semibold tracking-tight">April 2026</h2>
+                    </div>
+                    <div className="rounded-2xl bg-white/10 px-3 py-2 text-right">
+                      <p className="text-xs text-slate-300">Totalt</p>
+                      <p className="text-lg font-semibold">164,5 t</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl bg-white/5 p-4">
+                      <p className="text-xs text-slate-400">Arbeidsgiver</p>
+                      <p className="mt-1 font-medium">Shell Nyhamna</p>
+                    </div>
+                    <div className="rounded-2xl bg-white/5 p-4">
+                      <p className="text-xs text-slate-400">Siste PDF</p>
+                      <p className="mt-1 font-medium">12.04.2026</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 space-y-3">
+                  <div className="rounded-2xl border border-slate-200 p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900">Mandag 15.04</p>
+                        <p className="mt-1 text-sm text-slate-500">07:00–15:30 · Ordinær dag</p>
+                      </div>
+                      <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                        8,0 t
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-slate-200 p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900">Tirsdag 16.04</p>
+                        <p className="mt-1 text-sm text-slate-500">07:00–18:00 · Overtid</p>
+                      </div>
+                      <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
+                        10,5 t
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900">PDF-historikk</p>
+                        <p className="mt-1 text-sm text-slate-500">Åpne eller del tidligere eksport med ett trykk</p>
+                      </div>
+                      <button className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                        Åpne
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="mx-auto max-w-7xl px-6 py-20">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Funksjoner</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Samme uttrykk som appen. Bedre presentert på web.
+            </h2>
+            <p className="mt-4 text-lg text-slate-600">
+              Nettsiden er laget for å føles som en naturlig forlengelse av appen, med samme rene kortdesign,
+              luftige flater og tydelig informasjonsstruktur.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-900">
+                  <div className="h-5 w-5 rounded-md bg-slate-900" />
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-slate-950">{feature.title}</h3>
+                <p className="mt-3 leading-7 text-slate-600">{feature.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="workflow" className="border-y border-slate-200 bg-white">
+          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Hvordan det virker</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+                Fra timeføring til ferdig PDF på få steg.
+              </h2>
+              <p className="mt-4 max-w-xl text-lg text-slate-600">
+                Denne seksjonen viser arbeidsflyten brukeren møter i appen. Enkelt å forstå, enkelt å ta i bruk.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {steps.map((step, index) => (
+                <div key={step} className="rounded-3xl border border-slate-200 p-6 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-sm font-semibold text-white">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold tracking-tight text-slate-950">{step}</h3>
+                      <p className="mt-2 text-slate-600">
+                        Fokus på fart, oversikt og profesjonell eksport uten unødvendig kompleksitet.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-20">
+          <div className="rounded-[2rem] bg-slate-900 px-8 py-10 text-white shadow-2xl shadow-slate-900/15 sm:px-10 sm:py-12">
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Klar for neste steg</p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                  En landingsside som matcher appen visuelt.
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+                  Denne kan brukes som forside på farstadtechnology.no, som egen underside, eller som base for videre
+                  utvikling med nedlasting, kontakt eller innlogging senere.
+                </p>
+              </div>
+
+              <div id="contact" className="flex flex-wrap gap-3">
+                <a
+                  href="#home"
+                  className="rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5"
+                >
+                  Til toppen
+                </a>
+                <a
+                  href="#features"
+                  className="rounded-2xl border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+                >
+                  Se funksjoner
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
