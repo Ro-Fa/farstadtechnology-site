@@ -2,969 +2,223 @@
 <html lang="no">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BiteFy | Smarter food scanning for allergies</title>
-  <meta
-    name="description"
-    content="BiteFy helps people with food allergies and intolerances check products faster. Scan barcodes, review ingredients, and get a clearer overview while shopping."
-  />
-  <meta name="theme-color" content="#060816" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BiteFy – Scan food. Stay safe.</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #060816;
-      --text: #ffffff;
-      --muted: #cbd5e1;
-      --muted-2: #94a3b8;
-      --line: rgba(255,255,255,0.10);
-      --line-soft: rgba(255,255,255,0.08);
-      --card: rgba(255,255,255,0.05);
-      --card-2: rgba(255,255,255,0.03);
-      --indigo: #6366f1;
-      --cyan: #67e8f9;
-      --green: #6ee7b7;
-      --shadow: 0 30px 80px rgba(0,0,0,0.45);
-      --max: 1280px;
-    }
-
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      color: var(--text);
-      background: #060816;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(circle at 10% 12%, rgba(103, 232, 249, 0.10), transparent 20%),
-        radial-gradient(circle at 85% 10%, rgba(99, 102, 241, 0.18), transparent 24%),
-        radial-gradient(circle at 50% 88%, rgba(99, 102, 241, 0.10), transparent 28%),
-        linear-gradient(180deg, #060816 0%, #070b1b 100%);
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: radial-gradient(circle at center, black 40%, transparent 82%);
-      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 82%);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+      background: #0a0a0a;
+      color: #fff;
     }
 
     .container {
-      width: min(100% - 48px, var(--max));
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 0 20px;
     }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      border-bottom: 1px solid var(--line);
-      background: rgba(6, 8, 22, 0.70);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    .header-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 14px;
-      font-weight: 800;
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(99,102,241,0.20), rgba(103,232,249,0.18));
-      box-shadow: 0 10px 30px rgba(124,140,255,0.18);
-    }
-
-    .brand-title {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 0;
-    }
-
-    .brand-subtitle {
-      margin: -2px 0 0;
-      font-size: 12px;
-      color: var(--muted-2);
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     .nav {
-      display: none;
-      align-items: center;
-      gap: 24px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .nav a:hover,
-    .footer-links a:hover {
-      color: white;
-    }
-
-    .header-actions {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
     }
 
-    .btn,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 14px;
+    .logo {
       font-weight: 600;
-      transition: 0.2s ease;
-      border: 1px solid transparent;
-      white-space: nowrap;
+      font-size: 20px;
+      letter-spacing: -0.5px;
     }
 
-    .btn {
-      color: white;
-      background: linear-gradient(90deg, #6366f1, #818cf8);
-      box-shadow: 0 16px 40px rgba(124,140,255,0.28);
+    .cta {
+      background: #fff;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      text-decoration: none;
+      transition: 0.2s;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.96;
-    }
-
-    .btn-secondary {
-      color: white;
-      background: rgba(255,255,255,0.05);
-      border-color: var(--line);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.09);
+    .cta:hover {
+      opacity: 0.85;
     }
 
     .hero {
-      position: relative;
-      overflow: hidden;
+      text-align: center;
+      padding: 120px 0 80px;
     }
 
-    .hero-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 80px 24px 110px;
-      display: grid;
-      gap: 56px;
-      align-items: center;
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      border: 1px solid rgba(103,232,249,0.15);
-      background: rgba(103,232,249,0.10);
-      color: #c8fbff;
-      padding: 10px 16px;
-      font-size: 14px;
-      font-weight: 500;
+    .hero p {
+      font-size: 18px;
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto 30px;
     }
 
-    h1 {
-      margin: 24px 0 0;
-      max-width: 900px;
-      font-size: clamp(42px, 7vw, 84px);
-      line-height: 0.95;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #ffffff 0%, #c7d2fe 50%, #67e8f9 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-text {
-      margin-top: 24px;
-      max-width: 760px;
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    .hero-actions {
-      margin-top: 32px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .hero-feature-grid {
-      margin-top: 40px;
-      display: grid;
-      gap: 16px;
-    }
-
-    .mini-card {
-      border-radius: 24px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      padding: 18px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .mini-card-title {
-      font-size: 14px;
-      font-weight: 700;
-      margin: 0;
-    }
-
-    .mini-card-text {
-      margin: 8px 0 0;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--muted-2);
-    }
-
-    .phone-wrap {
+    .hero-buttons {
       display: flex;
       justify-content: center;
+      gap: 12px;
     }
 
-    .phone-shell {
-      position: relative;
-      width: 100%;
-      max-width: 380px;
-      border-radius: 40px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      padding: 16px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    .btn {
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 15px;
+      text-decoration: none;
+      transition: 0.2s;
     }
 
-    .phone-shell::before,
-    .phone-shell::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(36px);
-      z-index: -1;
+    .btn-primary {
+      background: #fff;
+      color: #000;
     }
 
-    .phone-shell::before {
-      top: -32px;
-      right: -32px;
-      width: 120px;
-      height: 120px;
-      background: rgba(99,102,241,0.22);
-    }
-
-    .phone-shell::after {
-      left: -32px;
-      bottom: -32px;
-      width: 120px;
-      height: 120px;
-      background: rgba(103,232,249,0.15);
-    }
-
-    .phone-screen {
-      border-radius: 32px;
-      border: 1px solid var(--line-soft);
-      background: linear-gradient(180deg, #020617 0%, #0a0f22 100%);
-      padding: 16px;
-      overflow: hidden;
-    }
-
-    .phone-notch {
-      width: 112px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.55);
-      margin: 0 auto 16px;
-    }
-
-    .phone-inner {
-      display: grid;
-      gap: 16px;
-    }
-
-    .phone-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--muted-2);
-    }
-
-    .phone-card {
-      border-radius: 24px;
-      border: 1px solid var(--line-soft);
-      background: rgba(255,255,255,0.04);
-      padding: 16px;
-    }
-
-    .phone-card h3 {
-      margin: 0 0 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted);
-    }
-
-    .phone-product {
-      font-size: 32px;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      margin: 0;
-    }
-
-    .phone-muted {
-      margin: 10px 0 0;
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--muted-2);
-    }
-
-    .status-card {
-      border: 1px solid rgba(52,211,153,0.15);
-      background: rgba(52,211,153,0.10);
-    }
-
-    .status-label {
-      font-size: 14px;
-      font-weight: 500;
-      color: #9ef3cf;
-      margin: 0;
-    }
-
-    .status-title {
-      margin: 10px 0 0;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .list-card {
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      padding: 16px;
-    }
-
-    .list-card + .list-card {
-      margin-top: 12px;
-    }
-
-    .list-card-title {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .list-card-text {
-      margin: 6px 0 0;
-      font-size: 14px;
-      color: var(--muted-2);
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
     }
 
     .section {
-      padding: 96px 0;
+      padding: 80px 0;
     }
 
-    .section-soft {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
     }
 
-    .eyebrow {
-      margin: 0;
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: #67e8f9;
+    .card {
+      background: #111;
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
-    h2 {
-      margin: 16px 0 0;
-      font-size: clamp(36px, 5vw, 56px);
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .section-lead {
-      margin-top: 24px;
-      max-width: 840px;
+    .card h3 {
+      margin-bottom: 10px;
       font-size: 18px;
-      line-height: 1.75;
-      color: var(--muted);
     }
 
-    .feature-grid,
-    .support-grid {
-      margin-top: 48px;
-      display: grid;
-      gap: 24px;
-    }
-
-    .feature-card,
-    .support-card,
-    .policy-card,
-    .principle-card {
-      border-radius: 32px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      padding: 24px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 20px;
-      margin-bottom: 18px;
-      background: rgba(99,102,241,0.15);
-      color: white;
-    }
-
-    .feature-card:nth-child(2) .icon-box,
-    .feature-card:nth-child(4) .icon-box {
-      background: rgba(103,232,249,0.15);
-    }
-
-    .card-title {
-      margin: 0;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .card-text {
-      margin: 14px 0 0;
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--muted);
-    }
-
-    .about-grid {
-      display: grid;
-      gap: 40px;
-    }
-
-    .principles-grid {
-      display: grid;
-      gap: 16px;
-      margin-top: 28px;
-    }
-
-    .policy-wrap {
-      margin-top: 40px;
-      display: grid;
-      gap: 20px;
-    }
-
-    .policy-card h3 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .policy-card p {
-      margin: 14px 0 0;
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--muted);
-    }
-
-    .support-card .label {
-      margin: 0;
-      font-size: 14px;
-      color: var(--muted-2);
-    }
-
-    .support-card .value {
-      display: block;
-      margin-top: 8px;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      color: white;
-      word-break: break-word;
-    }
-
-    .support-card .value:hover {
-      color: #67e8f9;
-    }
-
-    .support-card .desc {
-      margin: 16px 0 0;
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--muted);
-    }
-
-    .site-footer {
-      border-top: 1px solid var(--line);
-      background: rgba(6,8,22,0.7);
-    }
-
-    .footer-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      color: var(--muted-2);
+    .card p {
+      color: #aaa;
       font-size: 14px;
     }
 
-    .footer-title {
-      margin: 0;
-      color: white;
-      font-weight: 500;
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      color: #777;
+      font-size: 14px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    @media (min-width: 768px) {
-      .nav {
-        display: flex;
+    @media(max-width: 768px) {
+      .hero h1 {
+        font-size: 34px;
       }
 
-      .hero-feature-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .support-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .footer-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    @media (min-width: 1100px) {
-      .hero-inner {
-        grid-template-columns: 1fr 420px;
-      }
-
-      .about-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-        align-items: start;
-      }
-
-      .feature-grid {
-        grid-template-columns: repeat(4, 1fr);
+      .hero {
+        padding: 80px 0 60px;
       }
     }
   </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="#home" class="brand">
-        <div class="brand-mark">BF</div>
-        <div>
-          <p class="brand-title">BiteFy</p>
-          <p class="brand-subtitle">Smarter food scanning for allergies</p>
-        </div>
-      </a>
 
-      <nav class="nav">
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#support">Support</a>
-      </nav>
+<header>
+  <div class="container nav">
+    <div class="logo">BiteFy</div>
+    <a href="#" class="cta">Download</a>
+  </div>
+</header>
 
-      <div class="header-actions">
-        <a href="#support" class="btn-secondary">Contact</a>
-        <a href="#privacy" class="btn">Privacy Policy</a>
-      </div>
+<section class="hero">
+  <div class="container">
+    <h1>Scan food. Stay safe.</h1>
+    <p>
+      BiteFy helps you instantly understand what’s inside your food.
+      Scan barcodes and get clear allergy warnings in seconds.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#" class="btn btn-primary">Download App</a>
+      <a href="#features" class="btn btn-secondary">Learn more</a>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-inner">
-        <div>
-          <div class="pill">Built for allergy-aware shopping</div>
+<section id="features" class="section">
+  <div class="container">
+    <div class="features">
 
-          <h1>
-            Scan food products with
-            <span class="gradient-text">more clarity</span>.
-          </h1>
-
-          <p class="hero-text">
-            BiteFy helps people with food allergies and intolerances check products
-            faster. Scan a barcode, review ingredients, and get a clearer overview
-            while shopping.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#support" class="btn" style="background:#fff;color:#0f172a;box-shadow:none;">Contact support</a>
-            <a href="#features" class="btn-secondary">Explore features</a>
-          </div>
-
-          <div class="hero-feature-grid">
-            <div class="mini-card">
-              <p class="mini-card-title">Barcode scanning</p>
-              <p class="mini-card-text">Quick product lookup using your phone camera.</p>
-            </div>
-            <div class="mini-card">
-              <p class="mini-card-title">Ingredient overview</p>
-              <p class="mini-card-text">Product details in a clearer and faster format.</p>
-            </div>
-            <div class="mini-card">
-              <p class="mini-card-title">Saved preferences</p>
-              <p class="mini-card-text">Store allergy settings locally on your device.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="phone-wrap">
-          <div class="phone-shell">
-            <div class="phone-screen">
-              <div class="phone-notch"></div>
-
-              <div class="phone-inner">
-                <div class="phone-top">
-                  <span>BiteFy</span>
-                  <span>Preview</span>
-                </div>
-
-                <div class="phone-card">
-                  <h3>Scanned product</h3>
-                  <p class="phone-product">Oat Bar</p>
-                  <p class="phone-muted">
-                    Ingredients and allergy-relevant information shown in a faster,
-                    easier format.
-                  </p>
-                </div>
-
-                <div class="phone-card status-card">
-                  <p class="status-label">Status</p>
-                  <p class="status-title">Needs review</p>
-                  <p class="phone-muted" style="color:#cbd5e1;">
-                    Always verify the packaging label, especially for severe allergies.
-                  </p>
-                </div>
-
-                <div>
-                  <div class="list-card">
-                    <p class="list-card-title">Milk</p>
-                    <p class="list-card-text">No clear match found</p>
-                  </div>
-                  <div class="list-card">
-                    <p class="list-card-title">Gluten</p>
-                    <p class="list-card-text">Contains oats — check label</p>
-                  </div>
-                  <div class="list-card">
-                    <p class="list-card-title">Ingredients</p>
-                    <p class="list-card-text">Oats, cocoa butter, sugar, salt...</p>
-                  </div>
-                </div>
-
-                <div style="padding-top: 8px; font-size:12px; color:#64748b;">
-                  Demo preview for BiteFy
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="section">
-      <div class="container">
-        <p class="eyebrow">Features</p>
-        <h2>Designed to reduce friction while shopping.</h2>
-        <p class="section-lead">
-          BiteFy is built around speed, clarity, and better decision support for
-          users who need to pay close attention to ingredients.
-        </p>
-
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="icon-box">⌁</div>
-            <p class="card-title">Fast scanning</p>
-            <p class="card-text">
-              Scan product barcodes quickly and get to the relevant information faster.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="icon-box">✓</div>
-            <p class="card-title">Cleaner product info</p>
-            <p class="card-text">
-              Ingredients and product details shown in a simpler, easier-to-read layout.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="icon-box">◎</div>
-            <p class="card-title">Local preferences</p>
-            <p class="card-text">
-              Allergy and diet preferences can be stored locally on the device.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="icon-box">✦</div>
-            <p class="card-title">Supportive, not medical</p>
-            <p class="card-text">
-              BiteFy is built as an informational support tool, not a medical device.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section section-soft">
-      <div class="container about-grid">
-        <div>
-          <p class="eyebrow">About BiteFy</p>
-          <h2>A simpler product check for allergy-aware shopping.</h2>
-          <p class="section-lead">
-            BiteFy is designed to make food product checks easier while shopping.
-            The app helps users scan barcodes, review product information, and keep
-            track of dietary preferences directly on their device.
-          </p>
-          <p class="section-lead" style="margin-top:16px;">
-            BiteFy is intended as an informational support tool. Product information
-            may come from third-party databases and may be incomplete or outdated.
-            Users should always verify the packaging label before consuming a product.
-          </p>
-        </div>
-
-        <div class="principle-card">
-          <p class="eyebrow" style="color:#94a3b8;">Core principles</p>
-
-          <div class="principles-grid">
-            <div class="mini-card" style="background:rgba(255,255,255,0.04);">
-              <p class="mini-card-title">Clarity first</p>
-              <p class="mini-card-text">
-                Reduce friction and make product checks easier to understand.
-              </p>
-            </div>
-
-            <div class="mini-card" style="background:rgba(255,255,255,0.04);">
-              <p class="mini-card-title">Built for everyday use</p>
-              <p class="mini-card-text">
-                Quick enough to use in a store, simple enough to trust as a workflow.
-              </p>
-            </div>
-
-            <div class="mini-card" style="background:rgba(255,255,255,0.04);">
-              <p class="mini-card-title">Label verification matters</p>
-              <p class="mini-card-text">
-                Packaging labels remain the final source of truth for consumption decisions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="privacy" class="section">
-      <div class="container" style="max-width: 1040px;">
-        <p class="eyebrow">Privacy Policy</p>
-        <h2>Privacy Policy for BiteFy</h2>
-        <p style="margin-top:16px;font-size:14px;color:#64748b;">Last updated: April 18, 2026</p>
-
-        <div class="policy-wrap">
-          <div class="policy-card">
-            <h3>1. Overview</h3>
-            <p>
-              BiteFy is a mobile application that helps users scan food products,
-              review ingredients, and check whether a product may fit their dietary
-              preferences or allergy-related needs.
-            </p>
-          </div>
-
-          <div class="policy-card">
-            <h3>2. Information the app may use</h3>
-            <p>
-              BiteFy may use camera access for barcode scanning, barcode numbers
-              entered manually by the user, locally stored allergy or dietary
-              settings, locally stored favorites and history, and product data
-              retrieved from third-party sources.
-            </p>
-          </div>
-
-          <div class="policy-card">
-            <h3>3. Local storage</h3>
-            <p>
-              Certain settings and user-created data may be stored locally on the
-              device to improve the app experience. This information is not intended
-              to personally identify the user.
-            </p>
-          </div>
-
-          <div class="policy-card">
-            <h3>4. Third-party product data</h3>
-            <p>
-              BiteFy may retrieve product information from external sources. We do
-              not guarantee that all product data is complete, accurate, or up to date.
-            </p>
-          </div>
-
-          <div class="policy-card">
-            <h3>5. Health and allergy disclaimer</h3>
-            <p>
-              BiteFy is not a medical device and does not provide medical advice.
-              Users with allergies or severe intolerances should always verify the
-              packaging and ingredient label before use or consumption.
-            </p>
-          </div>
-
-          <div class="policy-card">
-            <h3>6. Data sharing</h3>
-            <p>
-              BiteFy is not designed to sell personal data. If third-party services
-              are used for product lookups, limited technical request data may be
-              transmitted as part of normal functionality.
-            </p>
-          </div>
-
-          <div class="policy-card">
-            <h3>7. Data retention</h3>
-            <p>
-              Locally stored information remains on the user’s device until it is
-              removed by the user, deleted through app functionality, or removed
-              when the app is uninstalled.
-            </p>
-          </div>
-
-          <div class="policy-card">
-            <h3>8. Contact</h3>
-            <p>
-              For support or privacy-related questions, contact
-              <a href="mailto:support@bitefy.no" style="color:#67e8f9;"> support@bitefy.no</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="support" class="section">
-      <div class="container">
-        <p class="eyebrow">Support</p>
-        <h2>Need help?</h2>
-        <p class="section-lead" style="max-width:760px;">
-          If you have questions, feedback, or want to report an issue related to BiteFy,
-          please contact us by email.
-        </p>
-
-        <div class="support-grid">
-          <div class="support-card">
-            <p class="label">Support email</p>
-            <a href="mailto:support@bitefy.no" class="value">support@bitefy.no</a>
-            <p class="desc">
-              For bug reports, app issues, feature questions, or general support.
-            </p>
-          </div>
-
-          <div class="support-card">
-            <p class="label">Response</p>
-            <span class="value" style="font-size:32px;">We aim to reply as soon as possible</span>
-            <p class="desc">
-              Include your device type, operating system, and a short description
-              of the issue when relevant.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <p class="footer-title">BiteFy</p>
-        <p id="copyright">© 2026 BiteFy. All rights reserved.</p>
+      <div class="card">
+        <h3>Barcode scanning</h3>
+        <p>Scan any product and instantly retrieve ingredients and nutrition data.</p>
       </div>
 
-      <div class="footer-links">
-        <a href="#privacy">Privacy Policy</a>
-        <a href="#support">Support</a>
+      <div class="card">
+        <h3>Allergy detection</h3>
+        <p>Automatically highlights potential allergens based on your profile.</p>
       </div>
+
+      <div class="card">
+        <h3>Simple results</h3>
+        <p>Clear “Safe”, “Warning” or “Danger” indicators. No confusion.</p>
+      </div>
+
+      <div class="card">
+        <h3>Personalized</h3>
+        <p>Customize your allergies and preferences for accurate results every time.</p>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    document.getElementById("copyright").textContent =
-      "© " + new Date().getFullYear() + " BiteFy. All rights reserved.";
-  </script>
+<section class="section">
+  <div class="container" style="text-align:center;">
+    <h2 style="font-size:28px; margin-bottom:20px;">Built for everyday use</h2>
+    <p style="color:#aaa; max-width:600px; margin:0 auto;">
+      Whether you're shopping, traveling, or eating out — BiteFy gives you
+      confidence in what you eat.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> BiteFy – Farstad Technology
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").innerText = new Date().getFullYear();
+</script>
+
 </body>
 </html>
