@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Farstad Technology | Digital products, apps and AI automation</title>
   <meta
     name="description"
-    content="Farstad Technology bygger nettsider, apper, AI-løsninger og automatiserte digitale produkter."
+    content="Farstad Technology bygger nettsider, apper, AI-løsninger og automatiserte digitale produkter med premium visuelt uttrykk."
   />
-  <meta name="theme-color" content="#f4f8fc" />
+  <meta name="theme-color" content="#f5f8fc" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,21 +20,22 @@
 
   <style>
     :root {
-      --bg: #f4f8fc;
+      --bg: #f5f8fc;
+      --bg-2: #eef4fb;
       --card: #ffffff;
       --text: #0f172a;
       --muted: #64748b;
-      --muted-light: #94a3b8;
+      --muted-2: #94a3b8;
       --blue: #4169e1;
       --blue-dark: #2447c6;
       --soft-blue: #eaf2ff;
-      --border: #e3eaf4;
-      --shadow: 0 24px 60px rgba(15, 23, 42, 0.10);
-      --shadow-soft: 0 14px 34px rgba(15, 23, 42, 0.08);
-      --radius-xl: 34px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --max: 1180px;
+      --border: #e2eaf3;
+      --shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+      --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --radius-xl: 38px;
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --max: 1200px;
     }
 
     * {
@@ -47,11 +49,26 @@
     body {
       margin: 0;
       font-family: "Inter", sans-serif;
-      background:
-        radial-gradient(circle at 20% 10%, rgba(65,105,225,0.10), transparent 24%),
-        radial-gradient(circle at 90% 20%, rgba(65,105,225,0.08), transparent 24%),
-        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
       color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(65,105,225,0.10), transparent 26%),
+        radial-gradient(circle at 92% 16%, rgba(65,105,225,0.08), transparent 22%),
+        linear-gradient(180deg, #f9fcff 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 82%);
+      opacity: 0.38;
+      z-index: -1;
     }
 
     a {
@@ -68,9 +85,9 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(247, 251, 255, 0.78);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      background: rgba(249, 252, 255, 0.78);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(226, 234, 243, 0.85);
     }
 
     .nav {
@@ -85,19 +102,19 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
+      font-weight: 900;
+      letter-spacing: -0.045em;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+      width: 43px;
+      height: 43px;
+      border-radius: 15px;
       display: grid;
       place-items: center;
       background: var(--blue);
       color: white;
-      box-shadow: 0 12px 24px rgba(65,105,225,0.26);
+      box-shadow: 0 16px 34px rgba(65,105,225,0.28);
       font-size: 0.9rem;
       font-weight: 900;
     }
@@ -105,45 +122,51 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 26px;
+      gap: 28px;
       color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .nav-links a {
+      transition: 0.2s ease;
     }
 
     .nav-links a:hover {
       color: var(--blue);
+      transform: translateY(-1px);
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 13px 18px;
-      background: var(--blue);
-      color: white;
-      font-weight: 700;
-      box-shadow: 0 14px 30px rgba(65,105,225,0.24);
-      transition: 0.22s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: var(--blue-dark);
-    }
-
+    .button,
     .button-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      padding: 13px 18px;
+      padding: 13px 19px;
+      font-size: 0.94rem;
+      font-weight: 800;
+      transition: 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .button {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 16px 34px rgba(65,105,225,0.24);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+      box-shadow: 0 22px 44px rgba(65,105,225,0.30);
+    }
+
+    .button-secondary {
       background: white;
       color: var(--text);
-      font-weight: 700;
       border: 1px solid var(--border);
-      transition: 0.22s ease;
+      box-shadow: 0 8px 22px rgba(15,23,42,0.04);
     }
 
     .button-secondary:hover {
@@ -152,13 +175,13 @@
     }
 
     .hero {
-      padding: 72px 0 52px;
+      padding: 76px 0 56px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 34px;
+      grid-template-columns: 0.94fr 1.06fr;
+      gap: 42px;
       align-items: center;
     }
 
@@ -166,15 +189,15 @@
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 9px 13px;
+      padding: 9px 14px;
       border-radius: 999px;
       background: white;
       border: 1px solid var(--border);
       color: var(--blue);
       font-size: 0.86rem;
-      font-weight: 800;
+      font-weight: 900;
       box-shadow: var(--shadow-soft);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .eyebrow-dot {
@@ -186,93 +209,132 @@
 
     h1 {
       margin: 0;
-      max-width: 760px;
-      font-size: clamp(3.2rem, 7vw, 6.5rem);
-      line-height: 0.9;
-      letter-spacing: -0.075em;
-      font-weight: 900;
+      max-width: 780px;
+      font-size: clamp(3.35rem, 7vw, 6.8rem);
+      line-height: 0.88;
+      letter-spacing: -0.082em;
+      font-weight: 950;
     }
 
     .hero-text {
-      margin: 26px 0 0;
-      max-width: 680px;
+      margin: 28px 0 0;
+      max-width: 690px;
       color: var(--muted);
-      font-size: 1.14rem;
-      line-height: 1.75;
+      font-size: 1.12rem;
+      line-height: 1.78;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 32px;
+      margin-top: 34px;
+    }
+
+    .proof-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .proof-pill {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
     }
 
     .hero-card {
       position: relative;
-      min-height: 560px;
-      border-radius: 38px;
-      background: #eef5fc;
+      min-height: 590px;
+      border-radius: 44px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.95), rgba(238,245,252,0.92));
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       overflow: hidden;
       display: grid;
       place-items: center;
-      padding: 34px;
+      padding: 40px;
     }
 
     .hero-card::before {
       content: "";
       position: absolute;
       inset: 24px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.30));
-      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.30)),
+        radial-gradient(circle at 70% 25%, rgba(65,105,225,0.09), transparent 30%);
+      border: 1px solid rgba(255,255,255,0.75);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      bottom: -120px;
+      width: 300px;
+      height: 300px;
+      border-radius: 999px;
+      background: rgba(65,105,225,0.10);
+      filter: blur(4px);
     }
 
     .visual-stack {
       position: relative;
       z-index: 1;
-      width: min(100%, 520px);
-      height: 390px;
+      width: min(100%, 560px);
+      height: 420px;
     }
 
     .paper-card {
       position: absolute;
-      right: 20px;
-      top: 12px;
-      width: 330px;
-      height: 200px;
-      border-radius: 10px;
+      right: 16px;
+      top: 10px;
+      width: 360px;
+      height: 220px;
+      border-radius: 12px;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.96), rgba(244,248,252,0.96));
+        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(247,250,255,0.98));
       border: 1px solid #dbe5f1;
-      box-shadow: 0 24px 34px rgba(15, 23, 42, 0.12);
-      transform: rotate(31deg);
-      padding: 26px;
+      box-shadow: 0 28px 42px rgba(15, 23, 42, 0.14);
+      transform: rotate(29deg);
+      padding: 28px;
     }
 
     .paper-card small {
       color: var(--blue);
-      font-weight: 900;
-      font-size: 0.64rem;
-      letter-spacing: 0.12em;
+      font-weight: 950;
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
     .paper-name {
-      margin: 12px 0 6px;
+      margin: 13px 0 7px;
       color: var(--blue);
-      font-size: 1.42rem;
-      font-weight: 900;
+      font-size: 1.55rem;
+      font-weight: 950;
       line-height: 1;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.06em;
+    }
+
+    .paper-sub {
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
     }
 
     .paper-line {
       height: 1px;
       background: #dbe5f1;
-      margin: 18px 0;
+      margin: 20px 0;
     }
 
     .paper-meta {
@@ -280,35 +342,60 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       color: #94a3b8;
-      font-size: 0.56rem;
-      font-weight: 700;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
     }
 
     .blue-block {
       position: absolute;
-      left: 26px;
+      left: 20px;
       bottom: 42px;
-      width: 300px;
-      height: 145px;
-      border-radius: 2px;
+      width: 330px;
+      height: 158px;
+      border-radius: 4px;
       background: var(--blue);
-      box-shadow: 0 22px 30px rgba(15, 23, 42, 0.22);
+      box-shadow: 0 28px 38px rgba(15, 23, 42, 0.24);
       display: flex;
       align-items: center;
-      padding: 0 22px;
+      padding: 0 24px;
       color: white;
-      font-size: 3rem;
-      font-weight: 900;
-      letter-spacing: -0.09em;
-      line-height: 0.9;
+      font-size: 3.25rem;
+      font-weight: 950;
+      letter-spacing: -0.095em;
+      line-height: 0.88;
     }
 
-    .blue-block span {
-      opacity: 0.98;
+    .mini-label-card {
+      position: absolute;
+      left: 76px;
+      top: 54px;
+      width: 142px;
+      padding: 13px;
+      border-radius: 18px;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      transform: rotate(-7deg);
+    }
+
+    .mini-label-card strong {
+      display: block;
+      font-size: 0.82rem;
+      letter-spacing: -0.03em;
+    }
+
+    .mini-label-card span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted-2);
+      font-size: 0.68rem;
+      line-height: 1.35;
+      font-weight: 700;
     }
 
     .section {
-      padding: 88px 0;
+      padding: 92px 0;
     }
 
     .section-head {
@@ -316,30 +403,39 @@
       justify-content: space-between;
       gap: 28px;
       align-items: end;
-      margin-bottom: 34px;
+      margin-bottom: 36px;
+    }
+
+    .label {
+      color: var(--blue);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      font-size: 0.76rem;
+      margin-bottom: 13px;
     }
 
     h2 {
       margin: 0;
-      max-width: 760px;
-      font-size: clamp(2.1rem, 4vw, 4rem);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
-      font-weight: 900;
+      max-width: 780px;
+      font-size: clamp(2.2rem, 4vw, 4.1rem);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+      font-weight: 950;
     }
 
     .section-text {
       max-width: 560px;
       color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.78;
       margin: 0;
-      font-size: 1.04rem;
+      font-size: 1.02rem;
     }
 
     .work-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
     }
 
     .product-card {
@@ -348,18 +444,17 @@
       border-radius: var(--radius-xl);
       padding: 14px;
       box-shadow: var(--shadow-soft);
-      transition: 0.24s ease;
+      transition: 0.25s ease;
     }
 
     .product-card:hover {
-      transform: translateY(-7px);
+      transform: translateY(-8px);
       box-shadow: var(--shadow);
     }
 
     .product-visual {
-      height: 290px;
-      border-radius: 26px;
-      background: #eef5fc;
+      height: 310px;
+      border-radius: 30px;
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -371,50 +466,36 @@
     }
 
     .product-visual.green {
-      background: linear-gradient(135deg, #effdf7, #f8fbff);
+      background: linear-gradient(135deg, #eefdf7, #f8fbff);
     }
 
     .product-visual.warm {
       background: linear-gradient(135deg, #fff7ed, #f8fbff);
     }
 
-    .mock-card {
-      width: 210px;
-      height: 136px;
-      background: var(--blue);
-      color: white;
-      display: grid;
-      place-items: center;
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: -0.08em;
-      box-shadow: 0 22px 34px rgba(65,105,225,0.30);
-      transform: rotate(-2deg);
-    }
-
     .mock-phone {
-      width: 146px;
-      height: 252px;
-      border-radius: 28px;
+      width: 150px;
+      height: 260px;
+      border-radius: 30px;
       background: #111827;
       padding: 12px;
-      box-shadow: 0 22px 34px rgba(15,23,42,0.22);
+      box-shadow: 0 24px 38px rgba(15,23,42,0.24);
       transform: rotate(5deg);
     }
 
     .mock-phone-inner {
       height: 100%;
-      border-radius: 20px;
+      border-radius: 21px;
       background: white;
       padding: 14px;
     }
 
     .mock-dot {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
       background: var(--blue);
-      margin-bottom: 16px;
+      margin-bottom: 17px;
     }
 
     .mock-line {
@@ -428,9 +509,30 @@
       width: 64%;
     }
 
+    .mock-panel {
+      height: 74px;
+      border-radius: 18px;
+      background: #eaf2ff;
+      margin-top: 18px;
+    }
+
+    .mock-card {
+      width: 218px;
+      height: 140px;
+      background: var(--blue);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 2.15rem;
+      font-weight: 950;
+      letter-spacing: -0.085em;
+      box-shadow: 0 24px 38px rgba(65,105,225,0.30);
+      transform: rotate(-2deg);
+    }
+
     .mock-flower {
-      width: 170px;
-      height: 170px;
+      width: 176px;
+      height: 176px;
       border-radius: 999px;
       background:
         radial-gradient(circle at 50% 50%, #f97316 0 18%, transparent 19%),
@@ -438,36 +540,37 @@
         radial-gradient(circle at 82% 50%, #fb923c 0 19%, transparent 20%),
         radial-gradient(circle at 50% 82%, #fb923c 0 19%, transparent 20%),
         radial-gradient(circle at 18% 50%, #fb923c 0 19%, transparent 20%);
-      box-shadow: 0 22px 34px rgba(249,115,22,0.18);
+      box-shadow: 0 24px 38px rgba(249,115,22,0.18);
     }
 
     .product-info {
-      padding: 18px 4px 6px;
+      padding: 19px 5px 7px;
     }
 
     .product-info h3 {
-      margin: 0 0 8px;
-      font-size: 1.25rem;
-      letter-spacing: -0.04em;
+      margin: 0 0 9px;
+      font-size: 1.28rem;
+      letter-spacing: -0.045em;
     }
 
     .product-info p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.62;
       font-size: 0.96rem;
     }
 
-    .price-row {
+    .meta-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 16px;
+      gap: 14px;
+      margin-top: 18px;
       color: var(--muted);
       font-size: 0.92rem;
     }
 
-    .price-row strong {
+    .meta-row strong {
       color: var(--text);
     }
 
@@ -481,67 +584,84 @@
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 25px;
       box-shadow: var(--shadow-soft);
       transition: 0.24s ease;
     }
 
     .service-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       box-shadow: var(--shadow);
     }
 
     .icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 50px;
+      height: 50px;
+      border-radius: 17px;
       background: var(--soft-blue);
       color: var(--blue);
       display: grid;
       place-items: center;
-      font-weight: 900;
-      margin-bottom: 18px;
+      font-weight: 950;
+      margin-bottom: 19px;
     }
 
     .service-card h3 {
       margin: 0 0 10px;
-      font-size: 1.08rem;
-      letter-spacing: -0.03em;
+      font-size: 1.1rem;
+      letter-spacing: -0.035em;
     }
 
     .service-card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.66;
       font-size: 0.94rem;
     }
 
-    .about-card {
-      border-radius: var(--radius-xl);
+    .studio-card {
+      border-radius: 40px;
       background: white;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      padding: 36px;
+      padding: 38px;
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 34px;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 36px;
       align-items: center;
     }
 
-    .about-label {
-      color: var(--blue);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.76rem;
-      margin-bottom: 12px;
+    .studio-card p {
+      color: var(--muted);
+      line-height: 1.78;
+      margin: 0;
+      font-size: 1.03rem;
     }
 
-    .about-card p {
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .value-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+    }
+
+    .value-card strong {
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: -0.035em;
+    }
+
+    .value-card span {
       color: var(--muted);
-      line-height: 1.75;
-      margin: 0;
-      font-size: 1.02rem;
+      line-height: 1.58;
+      font-size: 0.92rem;
     }
 
     .cta {
@@ -549,11 +669,11 @@
     }
 
     .cta-card {
-      border-radius: 38px;
+      border-radius: 42px;
       background: var(--blue);
       color: white;
-      padding: 44px;
-      box-shadow: 0 28px 60px rgba(65,105,225,0.24);
+      padding: 46px;
+      box-shadow: 0 30px 68px rgba(65,105,225,0.25);
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 24px;
@@ -565,24 +685,24 @@
     .cta-card::after {
       content: "";
       position: absolute;
-      right: -100px;
-      top: -100px;
-      width: 280px;
-      height: 280px;
+      right: -110px;
+      top: -110px;
+      width: 300px;
+      height: 300px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.13);
     }
 
     .cta-card h2 {
       color: white;
-      max-width: 760px;
+      max-width: 800px;
     }
 
     .cta-card p {
-      margin: 16px 0 0;
+      margin: 17px 0 0;
       color: rgba(255,255,255,0.80);
-      line-height: 1.7;
-      max-width: 640px;
+      line-height: 1.72;
+      max-width: 660px;
     }
 
     .cta-card .button {
@@ -595,7 +715,7 @@
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 28px 0;
+      padding: 30px 0;
       color: var(--muted);
       font-size: 0.92rem;
     }
@@ -607,15 +727,16 @@
       flex-wrap: wrap;
     }
 
-    @media (max-width: 1050px) {
+    @media (max-width: 1060px) {
       .hero-grid,
-      .about-card,
+      .studio-card,
       .cta-card {
         grid-template-columns: 1fr;
       }
 
       .work-grid,
-      .services-grid {
+      .services-grid,
+      .values-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -635,45 +756,66 @@
       }
 
       .hero {
-        padding-top: 46px;
+        padding-top: 48px;
       }
 
       .hero-card {
-        min-height: 430px;
+        min-height: 440px;
+        padding: 22px;
       }
 
       .visual-stack {
-        height: 310px;
+        height: 320px;
       }
 
       .paper-card {
-        width: 250px;
+        width: 252px;
         height: 160px;
-        right: 0;
+        right: -4px;
+        padding: 20px;
+      }
+
+      .paper-name {
+        font-size: 1.1rem;
       }
 
       .blue-block {
-        width: 235px;
-        height: 115px;
-        font-size: 2.25rem;
+        width: 240px;
+        height: 116px;
+        font-size: 2.28rem;
         left: 0;
       }
 
+      .mini-label-card {
+        display: none;
+      }
+
       .work-grid,
-      .services-grid {
+      .services-grid,
+      .values-grid {
         grid-template-columns: 1fr;
       }
 
       .section {
-        padding: 70px 0;
+        padding: 72px 0;
       }
 
       .container {
         width: min(100% - 24px, var(--max));
       }
+
+      .button-secondary {
+        display: none;
+      }
+
+      .studio-card,
+      .cta-card {
+        padding: 26px;
+      }
     }
   </style>
 </head>
+
 <body>
   <header class="site-header">
     <div class="container nav">
@@ -685,7 +827,7 @@
       <nav class="nav-links">
         <a href="#work">Prosjekter</a>
         <a href="#services">Tjenester</a>
-        <a href="#about">Om oss</a>
+        <a href="#direction">Retning</a>
         <a href="#contact">Kontakt</a>
       </nav>
 
@@ -702,25 +844,37 @@
             Digital products · Apps · AI automation
           </div>
 
-          <h1>Farstad Technology bygger digitale produkter med premium uttrykk.</h1>
+          <h1>Farstad Technology bygger digitale produkter med skarpt uttrykk.</h1>
 
           <p class="hero-text">
             Vi utvikler nettsider, apper, AI-løsninger og automatiserte systemer for bedrifter og egne produktkonsepter.
-            Samme produkter — ny visuell retning med lysere, renere og mer designstudio-inspirert uttrykk.
+            Dette er en lysere og mer produktorientert retning — med premium kort, ren typografi og tydelig visuell identitet.
           </p>
 
           <div class="hero-actions">
             <a class="button" href="#work">Se prosjekter</a>
             <a class="button-secondary" href="/bitefy">Åpne BiteFy</a>
           </div>
+
+          <div class="proof-row">
+            <div class="proof-pill">Apps</div>
+            <div class="proof-pill">Websites</div>
+            <div class="proof-pill">AI automation</div>
+            <div class="proof-pill">Digital products</div>
+          </div>
         </div>
 
         <div class="hero-card">
           <div class="visual-stack">
+            <div class="mini-label-card">
+              <strong>Product studio</strong>
+              <span>Apps, websites and automation systems.</span>
+            </div>
+
             <div class="paper-card">
               <small>Farstad Technology</small>
               <div class="paper-name">ROBERT FARSTAD</div>
-              <div style="color:#94a3b8;font-size:0.72rem;font-weight:700;">DIGITAL PRODUCTS & AI AUTOMATION</div>
+              <div class="paper-sub">DIGITAL PRODUCTS & AI AUTOMATION</div>
               <div class="paper-line"></div>
               <div class="paper-meta">
                 <span>APPS</span>
@@ -741,11 +895,11 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="about-label">Selected work</div>
+            <div class="label">Selected work</div>
             <h2>Produkter og konsepter under Farstad Technology.</h2>
           </div>
           <p class="section-text">
-            Hovedsiden fungerer som en produktkatalog for satsningene dine, med tydelige kort og egne undersider senere.
+            Hovedsiden fungerer som en premium produktkatalog for satsningene dine, med tydelige kort og egne undersider senere.
           </p>
         </div>
 
@@ -758,15 +912,15 @@
                   <div class="mock-line"></div>
                   <div class="mock-line short"></div>
                   <div class="mock-line"></div>
-                  <div style="height:70px;border-radius:18px;background:#eaf2ff;margin-top:18px;"></div>
+                  <div class="mock-panel"></div>
                 </div>
               </div>
             </div>
             <div class="product-info">
               <h3>BiteFy</h3>
               <p>App for å skanne matvarer, lese ingredienser og gjøre tryggere valg ved allergier og intoleranser.</p>
-              <div class="price-row">
-                <span>Fra MVP til App Store</span>
+              <div class="meta-row">
+                <span>App product</span>
                 <strong><a href="/bitefy">Åpne →</a></strong>
               </div>
             </div>
@@ -779,7 +933,7 @@
             <div class="product-info">
               <h3>AI Service Coordinator</h3>
               <p>Automatisering av serviceoppdrag, prioritering, kundeoppfølging og teknikerflyt.</p>
-              <div class="price-row">
+              <div class="meta-row">
                 <span>AI + drift</span>
                 <strong>Konsept</strong>
               </div>
@@ -793,7 +947,7 @@
             <div class="product-info">
               <h3>Bedriftsfeiring.no</h3>
               <p>Automatisert bestilling av kake, blomster og gaver til ansatte ved bursdager og milepæler.</p>
-              <div class="price-row">
+              <div class="meta-row">
                 <span>SaaS-idé</span>
                 <strong>Under utvikling</strong>
               </div>
@@ -807,8 +961,8 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="about-label">What we build</div>
-            <h2>Samme tjenester, mer raffinert uttrykk.</h2>
+            <div class="label">What we build</div>
+            <h2>Samme tjenester, mer raffinert presentasjon.</h2>
           </div>
           <p class="section-text">
             Denne retningen gjør selskapet mer designorientert og premium, uten å miste teknologi- og automasjonsfokuset.
@@ -819,7 +973,7 @@
           <article class="service-card">
             <div class="icon">01</div>
             <h3>Nettsider</h3>
-            <p>Moderne landingssider og selskapssider med premium førsteinntrykk.</p>
+            <p>Moderne landingssider og selskapssider med sterkt førsteinntrykk.</p>
           </article>
 
           <article class="service-card">
@@ -843,37 +997,57 @@
       </div>
     </section>
 
-    <section class="section" id="about">
+    <section class="section" id="direction">
       <div class="container">
-        <div class="about-card">
+        <div class="studio-card">
           <div>
-            <div class="about-label">Design direction B</div>
+            <div class="label">Design direction B</div>
             <h2>Lys, ren og produktorientert.</h2>
           </div>
-          <p>
-            Dette er en alternativ visuell retning for Farstad Technology. Den gir mer premium produktkort-vibe,
-            litt inspirert av designstudio, print, kort, katalog og moderne e-commerce. Den passer godt dersom du vil at
-            selskapet skal føles mer visuelt raffinert og mindre typisk mørk SaaS.
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <section class="cta" id="contact">
-      <div class="container">
-        <div class="cta-card">
           <div>
-            <h2>Klar for å bygge noe som ser skarpt ut?</h2>
             <p>
-              Farstad Technology bygger nettsider, apper, AI-løsninger og automatiserte produkter med fokus på kvalitet, fart og visuelt uttrykk.
+              Dette er en alternativ visuell retning for Farstad Technology. Den gir mer premium produktkort-vibe,
+              inspirert av designstudio, kort, print, katalog og moderne e-commerce. Den passer godt dersom selskapet
+              skal føles mer visuelt raffinert og mindre typisk mørk SaaS.
             </p>
-          </div>
 
-          <a class="button" href="mailto:kontakt@farstadtechnology.no">kontakt@farstadtechnology.no</a>
+            <div class="values-grid">
+              <div class="value-card">
+                <strong>Premium</strong>
+                <span>Mer eksklusivt og ryddig førsteinntrykk.</span>
+              </div>
+
+              <div class="value-card">
+                <strong>Produktfokus</strong>
+                <span>Hvert prosjekt presenteres som et eget produkt.</span>
+              </div>
+
+              <div class="value-card">
+                <strong>Skalerbart</strong>
+                <span>Enkel struktur for nye prosjekter og undersider.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="cta-card">
+        <div>
+          <h2>Klar for å bygge noe som ser skarpt ut?</h2>
+          <p>
+            Farstad Technology bygger nettsider, apper, AI-løsninger og automatiserte produkter med fokus på kvalitet, fart og visuelt uttrykk.
+          </p>
+        </div>
+
+        <a class="button" href="mailto:kontakt@farstadtechnology.no">kontakt@farstadtechnology.no</a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="container footer-row">
