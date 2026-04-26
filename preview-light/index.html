@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farstad Technology | Digital products, apps and AI automation</title>
+  <meta
+    name="description"
+    content="Farstad Technology bygger nettsider, apper, AI-løsninger og automatiserte digitale produkter."
+  />
+  <meta name="theme-color" content="#f4f8fc" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #f4f8fc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --muted-light: #94a3b8;
+      --blue: #4169e1;
+      --blue-dark: #2447c6;
+      --soft-blue: #eaf2ff;
+      --border: #e3eaf4;
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.10);
+      --shadow-soft: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(65,105,225,0.10), transparent 24%),
+        radial-gradient(circle at 90% 20%, rgba(65,105,225,0.08), transparent 24%),
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 251, 255, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 12px 24px rgba(65,105,225,0.26);
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 14px 30px rgba(65,105,225,0.24);
+      transition: 0.22s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+    }
+
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: white;
+      color: var(--text);
+      font-weight: 700;
+      border: 1px solid var(--border);
+      transition: 0.22s ease;
+    }
+
+    .button-secondary:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+
+    .hero {
+      padding: 72px 0 52px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--blue);
+      font-size: 0.86rem;
+      font-weight: 800;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      font-weight: 900;
+    }
+
+    .hero-text {
+      margin: 26px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.14rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 560px;
+      border-radius: 38px;
+      background: #eef5fc;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: 34px;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.30));
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .visual-stack {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 520px);
+      height: 390px;
+    }
+
+    .paper-card {
+      position: absolute;
+      right: 20px;
+      top: 12px;
+      width: 330px;
+      height: 200px;
+      border-radius: 10px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.96), rgba(244,248,252,0.96));
+      border: 1px solid #dbe5f1;
+      box-shadow: 0 24px 34px rgba(15, 23, 42, 0.12);
+      transform: rotate(31deg);
+      padding: 26px;
+    }
+
+    .paper-card small {
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .paper-name {
+      margin: 12px 0 6px;
+      color: var(--blue);
+      font-size: 1.42rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .paper-line {
+      height: 1px;
+      background: #dbe5f1;
+      margin: 18px 0;
+    }
+
+    .paper-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      color: #94a3b8;
+      font-size: 0.56rem;
+      font-weight: 700;
+    }
+
+    .blue-block {
+      position: absolute;
+      left: 26px;
+      bottom: 42px;
+      width: 300px;
+      height: 145px;
+      border-radius: 2px;
+      background: var(--blue);
+      box-shadow: 0 22px 30px rgba(15, 23, 42, 0.22);
+      display: flex;
+      align-items: center;
+      padding: 0 22px;
+      color: white;
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -0.09em;
+      line-height: 0.9;
+    }
+
+    .blue-block span {
+      opacity: 0.98;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 900;
+    }
+
+    .section-text {
+      max-width: 560px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0;
+      font-size: 1.04rem;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+      transition: 0.24s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-visual {
+      height: 290px;
+      border-radius: 26px;
+      background: #eef5fc;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-visual.blue {
+      background: linear-gradient(135deg, #edf4ff, #f8fbff);
+    }
+
+    .product-visual.green {
+      background: linear-gradient(135deg, #effdf7, #f8fbff);
+    }
+
+    .product-visual.warm {
+      background: linear-gradient(135deg, #fff7ed, #f8fbff);
+    }
+
+    .mock-card {
+      width: 210px;
+      height: 136px;
+      background: var(--blue);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      box-shadow: 0 22px 34px rgba(65,105,225,0.30);
+      transform: rotate(-2deg);
+    }
+
+    .mock-phone {
+      width: 146px;
+      height: 252px;
+      border-radius: 28px;
+      background: #111827;
+      padding: 12px;
+      box-shadow: 0 22px 34px rgba(15,23,42,0.22);
+      transform: rotate(5deg);
+    }
+
+    .mock-phone-inner {
+      height: 100%;
+      border-radius: 20px;
+      background: white;
+      padding: 14px;
+    }
+
+    .mock-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    .mock-line {
+      height: 8px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      margin-bottom: 10px;
+    }
+
+    .mock-line.short {
+      width: 64%;
+    }
+
+    .mock-flower {
+      width: 170px;
+      height: 170px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 50% 50%, #f97316 0 18%, transparent 19%),
+        radial-gradient(circle at 50% 18%, #fb923c 0 19%, transparent 20%),
+        radial-gradient(circle at 82% 50%, #fb923c 0 19%, transparent 20%),
+        radial-gradient(circle at 50% 82%, #fb923c 0 19%, transparent 20%),
+        radial-gradient(circle at 18% 50%, #fb923c 0 19%, transparent 20%);
+      box-shadow: 0 22px 34px rgba(249,115,22,0.18);
+    }
+
+    .product-info {
+      padding: 18px 4px 6px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+      letter-spacing: -0.04em;
+    }
+
+    .product-info p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .price-row strong {
+      color: var(--text);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      transition: 0.24s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: var(--soft-blue);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+      letter-spacing: -0.03em;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.94rem;
+    }
+
+    .about-card {
+      border-radius: var(--radius-xl);
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .about-label {
+      color: var(--blue);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.76rem;
+      margin-bottom: 12px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0;
+      font-size: 1.02rem;
+    }
+
+    .cta {
+      padding: 44px 0 96px;
+    }
+
+    .cta-card {
+      border-radius: 38px;
+      background: var(--blue);
+      color: white;
+      padding: 44px;
+      box-shadow: 0 28px 60px rgba(65,105,225,0.24);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-card::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .cta-card h2 {
+      color: white;
+      max-width: 760px;
+    }
+
+    .cta-card p {
+      margin: 16px 0 0;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    .cta-card .button {
+      background: white;
+      color: var(--blue);
+      box-shadow: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1050px) {
+      .hero-grid,
+      .about-card,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+
+      .work-grid,
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .cta-card .button {
+        width: fit-content;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-card {
+        min-height: 430px;
+      }
+
+      .visual-stack {
+        height: 310px;
+      }
+
+      .paper-card {
+        width: 250px;
+        height: 160px;
+        right: 0;
+      }
+
+      .blue-block {
+        width: 235px;
+        height: 115px;
+        font-size: 2.25rem;
+        left: 0;
+      }
+
+      .work-grid,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .container {
+        width: min(100% - 24px, var(--max));
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="brand">
+        <div class="brand-mark">FT</div>
+        <span>Farstad Technology</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#work">Prosjekter</a>
+        <a href="#services">Tjenester</a>
+        <a href="#about">Om oss</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+
+      <a class="button" href="mailto:kontakt@farstadtechnology.no">Kontakt</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Digital products · Apps · AI automation
+          </div>
+
+          <h1>Farstad Technology bygger digitale produkter med premium uttrykk.</h1>
+
+          <p class="hero-text">
+            Vi utvikler nettsider, apper, AI-løsninger og automatiserte systemer for bedrifter og egne produktkonsepter.
+            Samme produkter — ny visuell retning med lysere, renere og mer designstudio-inspirert uttrykk.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#work">Se prosjekter</a>
+            <a class="button-secondary" href="/bitefy">Åpne BiteFy</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="visual-stack">
+            <div class="paper-card">
+              <small>Farstad Technology</small>
+              <div class="paper-name">ROBERT FARSTAD</div>
+              <div style="color:#94a3b8;font-size:0.72rem;font-weight:700;">DIGITAL PRODUCTS & AI AUTOMATION</div>
+              <div class="paper-line"></div>
+              <div class="paper-meta">
+                <span>APPS</span>
+                <span>WEBSITES</span>
+                <span>AUTOMATION</span>
+              </div>
+            </div>
+
+            <div class="blue-block">
+              <span>FARSTAD<br />TECH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="about-label">Selected work</div>
+            <h2>Produkter og konsepter under Farstad Technology.</h2>
+          </div>
+          <p class="section-text">
+            Hovedsiden fungerer som en produktkatalog for satsningene dine, med tydelige kort og egne undersider senere.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <article class="product-card">
+            <div class="product-visual blue">
+              <div class="mock-phone">
+                <div class="mock-phone-inner">
+                  <div class="mock-dot"></div>
+                  <div class="mock-line"></div>
+                  <div class="mock-line short"></div>
+                  <div class="mock-line"></div>
+                  <div style="height:70px;border-radius:18px;background:#eaf2ff;margin-top:18px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="product-info">
+              <h3>BiteFy</h3>
+              <p>App for å skanne matvarer, lese ingredienser og gjøre tryggere valg ved allergier og intoleranser.</p>
+              <div class="price-row">
+                <span>Fra MVP til App Store</span>
+                <strong><a href="/bitefy">Åpne →</a></strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-visual green">
+              <div class="mock-card">AI OPS</div>
+            </div>
+            <div class="product-info">
+              <h3>AI Service Coordinator</h3>
+              <p>Automatisering av serviceoppdrag, prioritering, kundeoppfølging og teknikerflyt.</p>
+              <div class="price-row">
+                <span>AI + drift</span>
+                <strong>Konsept</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-visual warm">
+              <div class="mock-flower"></div>
+            </div>
+            <div class="product-info">
+              <h3>Bedriftsfeiring.no</h3>
+              <p>Automatisert bestilling av kake, blomster og gaver til ansatte ved bursdager og milepæler.</p>
+              <div class="price-row">
+                <span>SaaS-idé</span>
+                <strong>Under utvikling</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="about-label">What we build</div>
+            <h2>Samme tjenester, mer raffinert uttrykk.</h2>
+          </div>
+          <p class="section-text">
+            Denne retningen gjør selskapet mer designorientert og premium, uten å miste teknologi- og automasjonsfokuset.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="icon">01</div>
+            <h3>Nettsider</h3>
+            <p>Moderne landingssider og selskapssider med premium førsteinntrykk.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">02</div>
+            <h3>Apper</h3>
+            <p>Produktkonsepter, app-landingssider og struktur for App Store-lansering.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">03</div>
+            <h3>AI-løsninger</h3>
+            <p>Automatiserte prosesser, AI-workflows og digitale assistenter.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">04</div>
+            <h3>Automatisering</h3>
+            <p>Systemer som reduserer manuelt arbeid og skaper bedre flyt.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-card">
+          <div>
+            <div class="about-label">Design direction B</div>
+            <h2>Lys, ren og produktorientert.</h2>
+          </div>
+          <p>
+            Dette er en alternativ visuell retning for Farstad Technology. Den gir mer premium produktkort-vibe,
+            litt inspirert av designstudio, print, kort, katalog og moderne e-commerce. Den passer godt dersom du vil at
+            selskapet skal føles mer visuelt raffinert og mindre typisk mørk SaaS.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <h2>Klar for å bygge noe som ser skarpt ut?</h2>
+            <p>
+              Farstad Technology bygger nettsider, apper, AI-løsninger og automatiserte produkter med fokus på kvalitet, fart og visuelt uttrykk.
+            </p>
+          </div>
+
+          <a class="button" href="mailto:kontakt@farstadtechnology.no">kontakt@farstadtechnology.no</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>Farstad Technology</div>
+      <div>© <span id="year"></span> Farstad Technology. Alle rettigheter forbeholdt.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
